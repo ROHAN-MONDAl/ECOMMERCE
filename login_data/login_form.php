@@ -85,7 +85,7 @@ include('../production/serverfile.php');
                 $row_count = mysqli_num_rows($result);
                 if ($row_count == 1) {
                   $_SESSION["aemailid"] = $emailid;
-                  echo "<script>alert('Log in sucesssfull');window.location.href='../production/admindashboard.php';</script>";
+                  echo "<script>alert('Log in sucesssfull');window.location.href='../production/add_users_details.php';</script>";
                 } else {
                   echo "<script>alert('Login failed');</script>";
                 }
