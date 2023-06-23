@@ -118,33 +118,11 @@ $cid = $_GET['cid'];
 
 
 
-                            <?php
-                            $queryaddress = "select * from address where customerid='$euseremail'";
-                            $queryaddress = mysqli_query($con, $queryaddress);
-                            $rowaddress = mysqli_fetch_assoc($queryaddress);
-                            if ($rowaddress > 0) {
-                            ?>
-                                <?php
-                                $querycart = "select * from cart where customerid='$euseremail'";
-                                $querycart = mysqli_query($con, $querycart);
-                                $rowcart = mysqli_fetch_assoc($querycart);
-                                if ($rowcart > 0) {
-                                ?>
-                                    <li class="cart_cart"><a href="../front-end-site/shopping-cart.php?item=<?php echo $pid; ?>&cid=<?php echo $cid; ?>"><i class="icon-handbag icons"></i></a></li>
-                                <?php
-                                } else {
-                                ?>
-                                    <li class="cart_cart"><a href="../front-end-site/empty-cart.php?item=<?php echo $pid; ?>&cid=<?php echo $cid; ?>"><i class="icon-handbag icons"></i></a></li>
-                                <?php
-                                }
-                                ?>
-                            <?php
-                            } else {
-                            ?>
-                                <li class="cart_cart"><a href="../front-end-site/usersaddress.php"><i class="icon-handbag icons"></i></a></li>
-                            <?php
-                            }
-                            ?>
+
+                            <li class="cart_cart"><a href="../front-end-site/shopping-cart.php?item=<?php echo $pid; ?>&cid=<?php echo $cid; ?>"><i class="icon-handbag icons"></i></a></li>
+
+
+
 
 
 
