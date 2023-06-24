@@ -415,22 +415,6 @@ $rowtop = mysqli_fetch_assoc($restop);
                             ?>
                             
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                         </div>
                     </div>
                 </div>
