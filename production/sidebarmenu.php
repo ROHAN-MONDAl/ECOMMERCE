@@ -11,7 +11,7 @@
         <li><a href="add_category.php">Add category</a></li>
         <li><a href="add_subcat.php">Add Sub category</a></li>
           <li><a href="add_product.php">Add Product</a></li>
-          <li><a href="orders.php">Orders</a></li>
+          <li><a href="admin_orders.php">Orders</a></li>
         </ul>
       </li>
      

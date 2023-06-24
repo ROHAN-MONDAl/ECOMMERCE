@@ -96,6 +96,8 @@ $rowtop = mysqli_fetch_assoc($restop);
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li class="nav-item"><a class="nav-link" href="home-carousel.php">Home Carousel</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="myorders.php">My Orders</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="trackorder.php">Track</a></li>
                                 </ul>
                             </li>
 

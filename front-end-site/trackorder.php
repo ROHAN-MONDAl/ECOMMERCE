@@ -140,7 +140,7 @@ $rowtop = mysqli_fetch_assoc($restop);
                 <div class="col-md-8">
                     <div class="card mb-4">
                         <div class="card-header py-3">
-                            <h5 class="mb-0">Cart</h5>
+                            <h5 class="mb-0">Track Orders</h5>
                         </div>
 
                         <div class="card-body">
@@ -171,7 +171,7 @@ $rowtop = mysqli_fetch_assoc($restop);
                                 <?php
                                 $c = 1;
                                 $tot = 0;
-                                $querycart = "select * from cart where customerid='$euseremail'";
+                                $querycart = "select * from cartorder where customerid='$euseremail'";
                                 $querycart = mysqli_query($con, $querycart);
                                 while ($rowcart = mysqli_fetch_assoc($querycart)) {
 
@@ -237,70 +237,6 @@ $rowtop = mysqli_fetch_assoc($restop);
 
                                     <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
 
-
-                                        <!-- Quantity -->
-                                        <script>
-                                            function stepUp<?php echo $c ?>(str) {
-                                                var xhttp = new XMLHttpRequest();
-                                                xhttp.onreadystatechange = function() {
-                                                    if (this.readyState == 4 && this.status == 200) {
-                                                        document.getElementById("demo<?php echo $c ?>").innerHTML =
-                                                            this.responseText;
-                                                    }
-                                                };
-                                                xhttp.open("GET", "cart_stepup.php?s=" + str, true);
-                                                xhttp.send();
-                                            }
-                                        </script>
-
-                                        <script>
-                                            function stepDown<?php echo $c ?>(str) {
-                                                var xhttp = new XMLHttpRequest();
-                                                xhttp.onreadystatechange = function() {
-                                                    if (this.readyState == 4 && this.status == 200) {
-                                                        document.getElementById("demo<?php echo $c ?>").innerHTML =
-                                                            this.responseText;
-                                                    }
-                                                };
-                                                xhttp.open("GET", "cart_stepdown.php?s=" + str, true);
-                                                xhttp.send();
-                                            }
-
-                                            function calculate<?php echo $c; ?>(str) {
-                                                var xhttp = new XMLHttpRequest();
-                                                xhttp.onreadystatechange = function() {
-                                                    if (this.readyState == 4 && this.status == 200) {
-                                                        document.getElementById("total").innerHTML =
-                                                            this.responseText;
-                                                    }
-                                                };
-                                                xhttp.open("GET", "totalcalculation.php?s=" + str, true);
-                                                xhttp.send();
-                                            }
-                                        </script>
-
-
-                                        <div class="d-flex mb-4" style="max-width: 300px">
-                                            <button class="btn btn-primary h-50" onclick="stepDown<?php echo $c ?>(<?php echo $rowcart['slno'] ?>);calculate<?php echo $c ?>(<?php echo $rowcart['slno'] ?>)">
-                                                <i class="fa fa-minus"></i>
-                                            </button>
-                                            &nbsp;&nbsp;
-                                            <div class="form-outline">
-                                                <div id="demo<?php echo $c ?>">
-                                                    <input id="form1" min="0" name="quantity" value="<?php echo $rowcart['quantity']; ?>" type="text" class="form-control" />
-                                                    <label class="form-label" for="form1">Quantity</label>
-                                                </div>
-                                            </div>
-                                            &nbsp;&nbsp;
-                                            <button class="btn btn-primary h-50" onclick="stepUp<?php echo $c ?>(<?php echo $rowcart['slno'] ?>);calculate<?php echo $c ?>(<?php echo $rowcart['slno'] ?>)">
-                                                <i class="fa fa-plus"></i>
-                                            </button>
-                                        </div>
-                                        <!-- Quantity -->
-
-
-
-
                                         <!-- Price -->
                                         <p class="text-start text-md-center">
                                             <strong>Rs <?php echo $rows['productprice']; ?></strong>
@@ -319,122 +255,8 @@ $rowtop = mysqli_fetch_assoc($restop);
                         </div>
                     </div>
 
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <p><strong>Expected shipping delivery</strong></p>
-                            <p class="mb-0">12.10.2020 - 14.10.2020</p>
-                        </div>
-                    </div>
 
                 </div>
-                <div class="col-md-4">
-                    <div class="card mb-4">
-                        <div class="card-header py-3">
-                            <h5 class="mb-0">Summary</h5>
-                        </div>
-                        <div class="card-body">
-                            <div id="total">
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
-                                        Products
-                                        <span><?php echo $tot ?></span>
-                                        <input type="hidden" value="<?php echo $tot; ?>" name="tot">
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center px-0">
-                                        Shipping
-                                        <span>Gratis</span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
-                                        <div>
-                                            <strong>Total amount</strong>
-                                            <strong>
-                                                <p class="mb-0">(including VAT)</p>
-                                            </strong>
-                                        </div>
-                                        <span><strong><?php echo $tot; ?></strong></span>
-                                    </li>
-                                </ul>
-                            </div>
-
-                            <form method="post">
-                                <button type="submit" name="Add_Order" class="btn btn-primary btn-lg btn-block">Place Order</button>
-                            </form>
-                            <?php
-                            $n = 10;
-                            function getName()
-                            {
-                                $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-                                $randomString = '';
-
-                                for ($i = 0; $i < 3; $i++) {
-                                    $index = rand(0, strlen($characters) - 1);
-                                    $randomString .= $characters[$index];
-                                }
-
-                                return $randomString . time();
-                            }
-                            ?>
-
-
-                            <?php
-                            if (isset($_POST['Add_Order'])) {
-
-                                $billid = getname();
-                                date_default_timezone_set("Asia/kolkata");
-                                $date = date('Y-m-d h:i:s');
-
-
-                                $querycart = "select * from cart where customerid='$euseremail'";
-                                $querycart = mysqli_query($con, $querycart);
-                                while ($rowcart = mysqli_fetch_assoc($querycart)) {
-
-                                    $orderdate = $date;
-                                    $customerid = $rowcart['customerid'];
-                                    $productid = $rowcart['productid'];
-                                    $colorid = $rowcart['colorid'];
-                                    $quantity = $rowcart['quantity'];
-                                    $productsize = $rowcart['prosize'];
-                                    $ton = $rowcart['ton'];
-                                    $status = 'Order Placed';
-
-                                    $rowcart = "insert into cartorder values('','$billid','$orderdate','$customerid','$productid','$colorid','$quantity','$productsize','$ton')";
-                                    
-                                    if (mysqli_query($con, $rowcart)) {
-                                        $track = "insert into tracking values('','$billid','$status','$orderdate')";
-                                        mysqli_query($con, $track);
-                                        echo "<script>alert('inserted & Deleted');window.location.href='../front-end-site/empty-cart.php?>';</script>";
-                                        $querydel = "delete from cart where customerid='$euseremail'";
-                                        $resdel = mysqli_query($con, $querydel);
-                                        mysqli_query($con, $querydel);
-                                    } else {
-                                        echo "<script>alert('not inserted & not Deleted');window.location.href='../front-end-site/shopping-cart.php?>';</script>";
-                                    }
-                                   
-                                }
-                            }
-                            ?>
-                            
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div>
     </section>

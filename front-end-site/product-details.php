@@ -97,6 +97,11 @@ $cid = $_GET['cid'];
                             <?php
                             }
                             ?>
+
+
+
+
+
                         </ul>
                         <ul class="navbar-nav justify-content-end">
 
@@ -115,13 +120,9 @@ $cid = $_GET['cid'];
                                 ?>
                             </div>
 
-
-
-
-
-                            <li class="cart_cart"><a href="../front-end-site/shopping-cart.php?item=<?php echo $pid; ?>&cid=<?php echo $cid; ?>"><i class="icon-handbag icons"></i></a></li>
-
-
+                          
+                                    <li class="cart_cart"><a href="../front-end-site/shopping-cart.php"><i class="icon-handbag icons"></i></a></li>
+                                
 
 
 
