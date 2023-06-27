@@ -1,45 +1,45 @@
 <?php session_start();
-include( '../production/serverfile.php' );
-$euseremail = $_SESSION[ 'uemailid' ];
+include('../production/serverfile.php');
+$euseremail = $_SESSION['uemailid'];
 $querytop = "select * from euserdata where euseremail='$euseremail'";
-$restop = mysqli_query( $con, $querytop );
-$rowtop = mysqli_fetch_assoc( $restop );
+$restop = mysqli_query($con, $querytop);
+$rowtop = mysqli_fetch_assoc($restop);
 ?>
 <!DOCTYPE html>
-<html lang = 'en'>
+<html lang='en'>
 
 <head>
-<meta charset = 'utf-8'>
-<meta http-equiv = 'X-UA-Compatible' content = 'IE=edge'>
-<meta name = 'viewport' content = 'width=device-width, initial-scale=1'>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
 
-<link rel = 'icon' href = 'img/fav-icon.png' type = 'image/x-icon' />
-<!-- The above 3 meta tags *must* come first in the head;
+    <link rel='icon' href='img/fav-icon.png' type='image/x-icon' />
+    <!-- The above 3 meta tags *must* come first in the head;
 any other head content must come *after* these tags -->
-<title>Persuit</title>
+    <title>Persuit</title>
 
-<!-- Icon css link -->
-<link href = 'css/font-awesome.min.css' rel = 'stylesheet'>
-<link href = 'vendors/line-icon/css/simple-line-icons.css' rel = 'stylesheet'>
-<link href = 'vendors/elegant-icon/style.css' rel = 'stylesheet'>
-<!-- Bootstrap -->
-<link href = 'css/bootstrap.min.css' rel = 'stylesheet'>
+    <!-- Icon css link -->
+    <link href='css/font-awesome.min.css' rel='stylesheet'>
+    <link href='vendors/line-icon/css/simple-line-icons.css' rel='stylesheet'>
+    <link href='vendors/elegant-icon/style.css' rel='stylesheet'>
+    <!-- Bootstrap -->
+    <link href='css/bootstrap.min.css' rel='stylesheet'>
 
-<!-- Rev slider css -->
-<link href = 'vendors/revolution/css/settings.css' rel = 'stylesheet'>
-<link href = 'vendors/revolution/css/layers.css' rel = 'stylesheet'>
-<link href = 'vendors/revolution/css/navigation.css' rel = 'stylesheet'>
+    <!-- Rev slider css -->
+    <link href='vendors/revolution/css/settings.css' rel='stylesheet'>
+    <link href='vendors/revolution/css/layers.css' rel='stylesheet'>
+    <link href='vendors/revolution/css/navigation.css' rel='stylesheet'>
 
-<!-- Extra plugin css -->
-<link href = 'vendors/owl-carousel/owl.carousel.min.css' rel = 'stylesheet'>
-<link href = 'vendors/bootstrap-selector/css/bootstrap-select.min.css' rel = 'stylesheet'>
-<link href = 'vendors/jquery-ui/jquery-ui.css' rel = 'stylesheet'>
+    <!-- Extra plugin css -->
+    <link href='vendors/owl-carousel/owl.carousel.min.css' rel='stylesheet'>
+    <link href='vendors/bootstrap-selector/css/bootstrap-select.min.css' rel='stylesheet'>
+    <link href='vendors/jquery-ui/jquery-ui.css' rel='stylesheet'>
 
-<link href = 'css/style.css' rel = 'stylesheet'>
-<link href = 'css/responsive.css' rel = 'stylesheet'>
+    <link href='css/style.css' rel='stylesheet'>
+    <link href='css/responsive.css' rel='stylesheet'>
 
-<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -92,10 +92,9 @@ any other head content must come *after* these tags -->
                             $queryselect = "select * from euserdata where euseremail='$euseremail'";
                             $res = mysqli_query($con, $queryselect);
                             while ($row = mysqli_fetch_assoc($res)) {
-                            ?>
-                            <li class="nav-item"><a class="nav-link"
-                                    href="contact.html"><?php echo $row['eusername']; ?></a></li>
-                            <?php
+                                ?>
+                                <li class="nav-item"><a class="nav-link" href="contact.html"><?php echo $row['eusername']; ?></a></li>
+                                <?php
                             }
                             ?>
                         </ul>
@@ -105,16 +104,16 @@ any other head content must come *after* these tags -->
                                 <?php
                                 if (empty($_SESSION['uemailid'])) {
 
-                                ?>
-                                <button type="button" class="btn btn-primary"><a href="../user_login/signin.php"
-                                        style="color:white;">Log in</a></button>&nbsp;&nbsp;&nbsp;&nbsp;
-                                <?php
+                                    ?>
+                                    <button type="button" class="btn btn-primary"><a href="../user_login/signin.php"
+                                            style="color:white;">Log in</a></button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <?php
                                 } else {
-                                ?>
-                                <li class="user_icon"><a href="../user_login/index.php"><i
-                                            class="icon-user icons"></i></a></li>
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <?php
+                                    ?>
+                                    <li class="user_icon"><a href="../user_login/index.php"><i
+                                                class="icon-user icons"></i></a></li>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <?php
                                 }
                                 ?>
                             </div>
@@ -135,44 +134,44 @@ any other head content must come *after* these tags -->
 
     <!--================Categories Banner Area =================-->
     <style>
-    .gradient-custom {
-        /* fallback for old browsers */
-        background: #6a11cb;
+        .gradient-custom {
+            /* fallback for old browsers */
+            background: #6a11cb;
 
-        /* Chrome 10-25, Safari 5.1-6 */
-        background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+            /* Chrome 10-25, Safari 5.1-6 */
+            background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
 
-        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-        background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
-    }
+            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
+        }
 
-    .gradient-custom {
-        background: -webkit-linear-gradient(left, #3931af, #00c6ff);
-    }
+        .gradient-custom {
+            background: -webkit-linear-gradient(left, #3931af, #00c6ff);
+        }
 
-    .card-custom {
-        border-bottom-left-radius: 10% 50%;
-        border-top-left-radius: 10% 50%;
-        background-color: #f8f9fa;
-    }
+        .card-custom {
+            border-bottom-left-radius: 10% 50%;
+            border-top-left-radius: 10% 50%;
+            background-color: #f8f9fa;
+        }
 
 
-    .input-custom {
-        background-color: white;
-    }
+        .input-custom {
+            background-color: white;
+        }
 
-    .white-text {
-        color: hsl(52, 0%, 98%);
-        font-weight: 100;
-        font-size: 14px;
-    }
+        .white-text {
+            color: hsl(52, 0%, 98%);
+            font-weight: 100;
+            font-size: 14px;
+        }
 
-    .back-button {
-        background-color: hsl(52, 0%, 98%);
-        font-weight: 700;
-        color: black;
-        margin-top: 50px;
-    }
+        .back-button {
+            background-color: hsl(52, 0%, 98%);
+            font-weight: 700;
+            color: black;
+            margin-top: 50px;
+        }
     </style>
     <section class=" gradient-custom">
         <div class="container py-5">
@@ -256,28 +255,28 @@ any other head content must come *after* these tags -->
                                         </form>
 
                                         <?php
-                                                if (isset($_POST['submit'])) {
+                                        if (isset($_POST['submit'])) {
 
-                                                    $customerid = $euseremail;
-                                                    $fullname = $_POST['fullname'];
-                                                    $phoneno = $_POST['phoneno'];
-                                                    $city = $_POST['city'];
-                                                    $zipcode = $_POST['zipcode'];
-                                                    $address = $_POST['address'];
+                                            $customerid = $euseremail;
+                                            $fullname = $_POST['fullname'];
+                                            $phoneno = $_POST['phoneno'];
+                                            $city = $_POST['city'];
+                                            $zipcode = $_POST['zipcode'];
+                                            $address = $_POST['address'];
 
-                                                    $query = "insert into location values('','$customerid','$fullname','$phoneno','$city','$zipcode','$address')";
-                                                    if (mysqli_query($con, $query)) {
-                                                        echo "<script>alert('inserted');window.location.href='../front-end-site/shopping-cart.php?>';
+                                            $query = "insert into location values('','$customerid','$fullname','$phoneno','$city','$zipcode','$address')";
+                                            if (mysqli_query($con, $query)) {
+                                                echo "<script>alert('inserted');window.location.href='../front-end-site/shopping-cart.php?>';
                                                 </script>";
-                                                } else {
+                                            } else {
                                                 echo "<script>
                                                 alert('not inserted');
                                                 </script>";
-                                                }
-                                                }
-                                                ?>
+                                            }
+                                        }
+                                        ?>
 
-                                            </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -367,15 +366,16 @@ any other head content must come *after* these tags -->
                 </div>
             </div>
             <div class="footer_copyright">
-                <h5>© <script>
-                    document.write(new Date().getFullYear());
+                <h5>©
+                    <script>
+                        document.write(new Date().getFullYear());
                     </script> <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;
-<script>
-document.write( new Date().getFullYear() );
-</script> All rights reserved | This template is made with <i class = 'fa fa-heart-o'
-aria-hidden = 'true'></i> by <a href = 'https://colorlib.com' target = '_blank'>Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    Copyright &copy;
+                    <script>
+                        document.write(new Date().getFullYear());
+                    </script> All rights reserved | This template is made with <i class='fa fa-heart-o' aria-hidden='true'></i> by <a
+                        href='https://colorlib.com' target='_blank'>Colorlib</a>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                 </h5>
             </div>
         </div>
@@ -391,33 +391,33 @@ aria-hidden = 'true'></i> by <a href = 'https://colorlib.com' target = '_blank'>
 
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins ) -->
-<script src = 'js/jquery-3.2.1.min.js'></script>
-<!-- Include all compiled plugins ( below ), or include individual files as needed -->
-<script src = 'js/popper.min.js'></script>
-<script src = 'js/bootstrap.min.js'></script>
-<!-- Rev slider js -->
-<script src = 'vendors/revolution/js/jquery.themepunch.tools.min.js'></script>
-<script src = 'vendors/revolution/js/jquery.themepunch.revolution.min.js'></script>
-<script src = 'vendors/revolution/js/extensions/revolution.extension.actions.min.js'></script>
-<script src = 'vendors/revolution/js/extensions/revolution.extension.video.min.js'></script>
-<script src = 'vendors/revolution/js/extensions/revolution.extension.slideanims.min.js'></script>
-<script src = 'vendors/revolution/js/extensions/revolution.extension.layeranimation.min.js'></script>
-<script src = 'vendors/revolution/js/extensions/revolution.extension.navigation.min.js'></script>
-<script src = 'vendors/revolution/js/extensions/revolution.extension.slideanims.min.js'></script>
-<!-- Extra plugin css -->
-<script src = 'vendors/counterup/jquery.waypoints.min.js'></script>
-<script src = 'vendors/counterup/jquery.counterup.min.js'></script>
-<script src = 'vendors/owl-carousel/owl.carousel.min.js'></script>
-<script src = 'vendors/bootstrap-selector/js/bootstrap-select.min.js'></script>
-<script src = 'vendors/image-dropdown/jquery.dd.min.js'></script>
-<script src = 'js/smoothscroll.js'></script>
-<script src = 'vendors/isotope/imagesloaded.pkgd.min.js'></script>
-<script src = 'vendors/isotope/isotope.pkgd.min.js'></script>
-<script src = 'vendors/magnify-popup/jquery.magnific-popup.min.js'></script>
-<script src = 'vendors/vertical-slider/js/jQuery.verticalCarousel.js'></script>
-<script src = 'vendors/jquery-ui/jquery-ui.js'></script>
+    <script src='js/jquery-3.2.1.min.js'></script>
+    <!-- Include all compiled plugins ( below ), or include individual files as needed -->
+    <script src='js/popper.min.js'></script>
+    <script src='js/bootstrap.min.js'></script>
+    <!-- Rev slider js -->
+    <script src='vendors/revolution/js/jquery.themepunch.tools.min.js'></script>
+    <script src='vendors/revolution/js/jquery.themepunch.revolution.min.js'></script>
+    <script src='vendors/revolution/js/extensions/revolution.extension.actions.min.js'></script>
+    <script src='vendors/revolution/js/extensions/revolution.extension.video.min.js'></script>
+    <script src='vendors/revolution/js/extensions/revolution.extension.slideanims.min.js'></script>
+    <script src='vendors/revolution/js/extensions/revolution.extension.layeranimation.min.js'></script>
+    <script src='vendors/revolution/js/extensions/revolution.extension.navigation.min.js'></script>
+    <script src='vendors/revolution/js/extensions/revolution.extension.slideanims.min.js'></script>
+    <!-- Extra plugin css -->
+    <script src='vendors/counterup/jquery.waypoints.min.js'></script>
+    <script src='vendors/counterup/jquery.counterup.min.js'></script>
+    <script src='vendors/owl-carousel/owl.carousel.min.js'></script>
+    <script src='vendors/bootstrap-selector/js/bootstrap-select.min.js'></script>
+    <script src='vendors/image-dropdown/jquery.dd.min.js'></script>
+    <script src='js/smoothscroll.js'></script>
+    <script src='vendors/isotope/imagesloaded.pkgd.min.js'></script>
+    <script src='vendors/isotope/isotope.pkgd.min.js'></script>
+    <script src='vendors/magnify-popup/jquery.magnific-popup.min.js'></script>
+    <script src='vendors/vertical-slider/js/jQuery.verticalCarousel.js'></script>
+    <script src='vendors/jquery-ui/jquery-ui.js'></script>
 
-<script src = 'js/theme.js'></script>
+    <script src='js/theme.js'></script>
 </body>
 
 </html>
