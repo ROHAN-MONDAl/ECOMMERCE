@@ -242,7 +242,7 @@ $rowtop = mysqli_fetch_assoc($restop);
                                             $zipcode = $_POST['zipcode'];
                                             $address = $_POST['address'];
 
-                                            $query = "insert into address values('','$customerid','$fullname','$phoneno','$city','$zipcode','$address')";
+                                            $query = "insert into location values('','$customerid','$fullname','$phoneno','$city','$zipcode','$address')";
                                             if (mysqli_query($con, $query)) {
                                                 echo "<script>alert('inserted');window.location.href='../front-end-site/shopping-cart.php?>';</script>";
                                             } else {

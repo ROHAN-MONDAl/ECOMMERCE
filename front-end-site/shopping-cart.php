@@ -189,7 +189,7 @@ $rowtop = mysqli_fetch_assoc($restop);
                                     $rescolor = mysqli_query($con, $querycolor);
                                     $rowcolor = mysqli_fetch_assoc($rescolor);
 
-                                    $tot = $tot + $rowcart['quantity'] * $rows['productprice'];
+                                    // $tot = $tot + $rowcart['quantity'] * $rows['productprice'];
                                 ?>
 
                                     <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
@@ -400,8 +400,7 @@ $rowtop = mysqli_fetch_assoc($restop);
                                     $rowcart = "insert into cartorder values('','$billid','$orderdate','$customerid','$productid','$colorid','$quantity','$productsize','$ton')";
                                     
                                     if (mysqli_query($con, $rowcart)) {
-                                        $track = "insert into tracking values('','$billid','$status','$orderdate')";
-                                        mysqli_query($con, $track);
+                                        
                                         echo "<script>alert('inserted & Deleted');window.location.href='../front-end-site/empty-cart.php?>';</script>";
                                         $querydel = "delete from cart where customerid='$euseremail'";
                                         $resdel = mysqli_query($con, $querydel);
@@ -411,6 +410,8 @@ $rowtop = mysqli_fetch_assoc($restop);
                                     }
                                    
                                 }
+                                $track = "insert into tracking values('','$billid','$status','$orderdate')";
+                                        mysqli_query($con, $track);
                             }
                             ?>
                             

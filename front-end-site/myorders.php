@@ -145,123 +145,116 @@ $rowtop = mysqli_fetch_assoc($restop);
                             <h5 class="mb-0">My Orders</h5>
                         </div>
 
-                        <div class="card-body">
-                            <!-- Single item -->
-                            <div class="row">
+
+
+
+                        <?php 
+                        $queryselects = "select distinct(billid) from corder where customerid='$euseremail'";
+                        $selectrack = mysqli_query($con, $queryselects);
+                        while ($rowtrack = mysqli_fetch_assoc($selectrack))
+                        {
+                        ?>
+                        <div><?php echo $rowtrack['billid']; ?></div>
+                        <hr>
+                        <br>
+                        <!-- Single item -->
+                        <div class="row">
+
+                            <?php
+                            $c = 1;
+                            $tot = 0;
+                            $tid=$rowtrack['billid'];
+                            $querycart = "select * from corder where billid='$tid'";
+                            $querycart = mysqli_query($con, $querycart);
+                            while ($rowcart = mysqli_fetch_assoc($querycart)) 
+                            {
+                                $id = $rowcart['productid'];
+                                $queryselects = "select * from product where id='$id'";
+                                $ress = mysqli_query($con, $queryselects);
+                                $rows = mysqli_fetch_assoc($ress);
+                                $cid = $rowcart['colorid'];
+                                $queryimage = "select * from addimage where cid='$cid'";
+                                $resimage = mysqli_query($con, $queryimage);
+                                $rowimage = mysqli_fetch_assoc($resimage);
+
+                                $querycolor = "select * from addcolor where id='$cid'";
+                                $rescolor = mysqli_query($con, $querycolor);
+                                $rowcolor = mysqli_fetch_assoc($rescolor);
+
+
+
+                                $tot = $tot + $rowcart['quantity'] * $rows['productprice'];
+                            ?>
+
                                 <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
                                     <!-- Image -->
+                                    <div class="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
+                                        <img src="../production/dataimage/<?php echo $rowimage['image']; ?>" class="w-50" />
+                                        <a href="#!">
+                                            <div class="mask" style="background-color: rgba(251, 251, 251, 0.2)"></div>
+                                        </a>
+                                        <br>
+                                    </div>
                                     <!-- Image -->
                                 </div>
 
+                                <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
+                                    <tr>
+                                        <!-- Data -->
+                                        <p><strong>Name : <?php echo $rows['name']; ?></strong></p>
 
+                                        <?php
+                                        if ($rowcart['ton'] == 'NA') {
+                                        ?>
+                                            <p>Color: <?php echo $rowcolor['color']; ?></strong></p>
+                                            <p>Size: <?php echo $rowcart['productsize']; ?></p>
+                                        <?php
+                                        } else {
+                                        ?>
+                                            <p>TON: <?php echo $rowcart['ton']; ?></p>
+
+                                        <?php
+                                        }
+                                        ?>
+
+                                        <button type="button" class="btn btn-primary btn-sm me-1 mb-2" data-mdb-toggle="tooltip" title="Remove item">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-danger btn-sm mb-2" data-mdb-toggle="tooltip" title="Move to the wish list">
+                                            <i class="fa fa-heart" style="color:white"></i>
+                                        </button>
+                                        <!-- Data -->
+                                    </tr>
+
+
+                                </div>
 
                                 <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-                                    <!-- Quantity -->
-                                    <!-- Quantity -->
 
                                     <!-- Price -->
+                                    <p class="text-start text-md-center">
+                                        <strong>Rs <?php echo $rows['productprice']; ?></strong>
+                                    </p>
                                     <!-- Price -->
+
+
+
                                 </div>
-                            </div>
-                            <!-- Single item -->
-
-                            <hr class="my-4" />
-
-                            <!-- Single item -->
-                            <div class="row">
-
-                                <?php
-                                $c = 1;
-                                $tot = 0;
-                                $querycart = "select * from cartorder where customerid='$euseremail'";
-                                $querycart = mysqli_query($con, $querycart);
-                                while ($rowcart = mysqli_fetch_assoc($querycart)) {
-
-                                    $id = $rowcart['productid'];
-                                    $queryselects = "select * from product where id='$id'";
-                                    $ress = mysqli_query($con, $queryselects);
-                                    $rows = mysqli_fetch_assoc($ress);
-
-                                    $cid = $rowcart['colorid'];
-                                    $queryimage = "select * from addimage where cid='$cid'";
-                                    $resimage = mysqli_query($con, $queryimage);
-                                    $rowimage = mysqli_fetch_assoc($resimage);
-
-                                    $querycolor = "select * from addcolor where id='$cid'";
-                                    $rescolor = mysqli_query($con, $querycolor);
-                                    $rowcolor = mysqli_fetch_assoc($rescolor);
-
-
-
-                                    $tot = $tot + $rowcart['quantity'] * $rows['productprice'];
-                                ?>
-
-                                    <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
-                                        <!-- Image -->
-                                        <div class="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
-                                            <img src="../production/dataimage/<?php echo $rowimage['image']; ?>" class="w-100" />
-                                            <a href="#!">
-                                                <div class="mask" style="background-color: rgba(251, 251, 251, 0.2)"></div>
-                                            </a>
-                                            <br>
-                                        </div>
-                                        <!-- Image -->
-                                    </div>
-
-                                    <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
-                                        <tr>
-                                            <!-- Data -->
-                                            <p><strong>Name : <?php echo $rows['name']; ?></strong></p>
-
-                                            <?php
-                                            if ($rowcart['ton'] == 'NA') {
-                                            ?>
-                                                <p>Color: <?php echo $rowcolor['color']; ?></strong></p>
-                                                <p>Size: <?php echo $rowcart['productsize']; ?></p>
-                                            <?php
-                                            } else {
-                                            ?>
-                                                <p>TON: <?php echo $rowcart['ton']; ?></p>
-
-                                            <?php
-                                            }
-                                            ?>
-
-                                            <button type="button" class="btn btn-primary btn-sm me-1 mb-2" data-mdb-toggle="tooltip" title="Remove item">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
-                                            <button type="button" class="btn btn-danger btn-sm mb-2" data-mdb-toggle="tooltip" title="Move to the wish list">
-                                                <i class="fa fa-heart" style="color:white"></i>
-                                            </button>
-                                            <!-- Data -->
-                                        </tr>
-
-
-                                    </div>
-
-                                    <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-
-                                        <!-- Price -->
-                                        <p class="text-start text-md-center">
-                                            <strong>Rs <?php echo $rows['productprice']; ?></strong>
-                                        </p>
-                                        <!-- Price -->
-
-
-
-                                    </div>
-                                <?php
-                                    $c++;
-                                }
-                                ?>
-                            </div>
-                            <!-- Single item -->
+                            <?php
+                                $c++;
+                            }
+                            ?>
                         </div>
+                        <?php 
+                        }
+                        ?>
+                        <!-- Single item -->
                     </div>
-
-
                 </div>
+
+
             </div>
+        </div>
         </div>
     </section>
 

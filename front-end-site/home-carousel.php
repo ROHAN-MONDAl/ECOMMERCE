@@ -143,7 +143,7 @@ $rowtop = mysqli_fetch_assoc($restop);
 
 
                             <?php
-                            $queryaddress = "select * from address where customerid='$euseremail'";
+                            $queryaddress = "select * from location where customerid='$euseremail'";
                             $queryaddress = mysqli_query($con, $queryaddress);
                             $rowaddress = mysqli_fetch_assoc($queryaddress);
                             if ($rowaddress > 0) {
