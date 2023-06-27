@@ -388,6 +388,8 @@ $rowtop = mysqli_fetch_assoc($restop);
                                 $querycart = mysqli_query($con, $querycart);
                                 while ($rowcart = mysqli_fetch_assoc($querycart)) {
 
+                                    $trackid = $euseremail;
+                                    $status = 'Order Placed';
                                     $orderdate = $date;
                                     $customerid = $rowcart['customerid'];
                                     $productid = $rowcart['productid'];
@@ -398,34 +400,20 @@ $rowtop = mysqli_fetch_assoc($restop);
 
                                     $rowcart = "insert into corder values('','$billid','$orderdate','$customerid','$productid','$colorid','$quantity','$productsize','$ton')";
                                     if (mysqli_query($con, $rowcart)) {
-                                        echo "<script>alert('inserted & Deleted');window.location.href='../front-end-site/empty-cart.php?>';</script>";
-                                        $track = "insert into track values('$trackid','$billid','$status','$orderdate')";
-                                        $querydel = "delete from cart where customerid='$euseremail'";
+                                        $rowcart = "insert into track values('$trackid','$billid','$status','$orderdate')";
+                                        mysqli_query($con, $rowcart);
+                                      echo "<script>alert('inserted & Deleted');window.location.href='../front-end-site/empty-cart.php?>';</script>";
+                                     $querydel = "delete from cart where customerid='$euseremail'";
                                         $resdel = mysqli_query($con, $querydel);
                                         mysqli_query($con, $querydel);
                                     } else {
                                         echo "<script>alert('not inserted & not Deleted');window.location.href='../front-end-site/shopping-cart.php?>';</script>";
                                     }
+
                                 }
+                                
                             }
                             ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                         </div>
                     </div>
                 </div>
