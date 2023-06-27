@@ -183,7 +183,7 @@ $rowtop = mysqli_fetch_assoc($restop);
 
 
 
-                                $tot = $tot + $rowcart['quantity'] * $rows['productprice'];
+                                $tot = $tot + (int)$rowcart['quantity'] * (int)$rows['productprice'];
                             ?>
 
                                 <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">

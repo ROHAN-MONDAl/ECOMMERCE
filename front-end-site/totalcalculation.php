@@ -33,7 +33,7 @@ while ($rowcart = mysqli_fetch_assoc($querycart)) {
     $rescolor = mysqli_query($con, $querycolor);
     $rowcolor = mysqli_fetch_assoc($rescolor);
 
-    $tot=$tot+$rowcart['quantity'] * $rows['productprice'];
+    $tot=$tot+ (int)$rowcart['quantity'] * (int)$rows['productprice'];
 }
 ?>
 

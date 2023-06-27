@@ -189,7 +189,7 @@ $rowtop = mysqli_fetch_assoc($restop);
                                     $rescolor = mysqli_query($con, $querycolor);
                                     $rowcolor = mysqli_fetch_assoc($rescolor);
 
-                                    // $tot = $tot + $rowcart['quantity'] * $rows['productprice'];
+                                    $tot = $tot + (int)$rowcart['quantity'] * (int)$rows['productprice'];
                                 ?>
 
                                     <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
@@ -210,14 +210,14 @@ $rowtop = mysqli_fetch_assoc($restop);
                                             <p><strong>Name : <?php echo $rows['name']; ?></strong></p>
 
                                             <?php
-                                            if ($rowcart['ton'] == 'NA') {
+                                            if ($rowcart['capacity'] == 'NA') {
                                             ?>
                                                 <p>Color: <?php echo $rowcolor['color']; ?></strong></p>
-                                                <p>Size: <?php echo $rowcart['prosize']; ?></p>
+                                                <p>Size: <?php echo $rowcart['productsize']; ?></p>
                                             <?php
                                             } else {
                                             ?>
-                                                <p>TON: <?php echo $rowcart['ton']; ?></p>
+                                                <p>TON: <?php echo $rowcart['capacity']; ?></p>
 
                                             <?php
                                             }
@@ -393,28 +393,38 @@ $rowtop = mysqli_fetch_assoc($restop);
                                     $productid = $rowcart['productid'];
                                     $colorid = $rowcart['colorid'];
                                     $quantity = $rowcart['quantity'];
-                                    $productsize = $rowcart['prosize'];
-                                    $ton = $rowcart['ton'];
-                                    $status = 'Order Placed';
+                                    $productsize = $rowcart['productsize'];
+                                    $ton = $rowcart['capacity'];
 
-                                    $rowcart = "insert into cartorder values('','$billid','$orderdate','$customerid','$productid','$colorid','$quantity','$productsize','$ton')";
-                                    
+                                    $rowcart = "insert into corder values('','$billid','$orderdate','$customerid','$productid','$colorid','$quantity','$productsize','$ton')";
                                     if (mysqli_query($con, $rowcart)) {
-                                        
                                         echo "<script>alert('inserted & Deleted');window.location.href='../front-end-site/empty-cart.php?>';</script>";
+                                        $track = "insert into track values('$trackid','$billid','$status','$orderdate')";
                                         $querydel = "delete from cart where customerid='$euseremail'";
                                         $resdel = mysqli_query($con, $querydel);
                                         mysqli_query($con, $querydel);
                                     } else {
                                         echo "<script>alert('not inserted & not Deleted');window.location.href='../front-end-site/shopping-cart.php?>';</script>";
                                     }
-                                   
                                 }
-                                $track = "insert into tracking values('','$billid','$status','$orderdate')";
-                                        mysqli_query($con, $track);
                             }
                             ?>
-                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                         </div>
                     </div>
