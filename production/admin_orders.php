@@ -12,6 +12,7 @@ $rowtop = mysqli_fetch_assoc($restop);
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <!-- Meta, title, CSS, favicons, etc. -->
@@ -110,7 +111,8 @@ $rowtop = mysqli_fetch_assoc($restop);
                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                     </li>
                     <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i
+                          class="fa fa-wrench"></i></a>
                       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="#">Settings 1</a>
                         <a class="dropdown-item" href="#">Settings 2</a>
@@ -125,7 +127,7 @@ $rowtop = mysqli_fetch_assoc($restop);
 
                   <div class="x_content">
                     <br />
-         
+
                     <!-- category data -->
                     <div class="row">
                       <div class="col-sm-12">
@@ -137,16 +139,24 @@ $rowtop = mysqli_fetch_assoc($restop);
                                   <input type="checkbox" id="check-all" class="flat">
                                 </th>
                                 <th class="column-title">Id</th>
+                                <th class="column-title">Customer Id</th>
                                 <th class="column-title">Product Name</th>
-                                <th class="column-title">Product Price</th>
                                 <th class="column-title">Product Size</th>
+                                <th class="column-title">Color</th>
                                 <th class="column-title">Capacity</th>
-                                <th class="column-title">Add Color</th>
+                                <th class="column-title">Product Price</th>
+                                <th class="column-title">Quantity</th>
                                 </th>
                               </tr>
                             </thead>
                             <tbody>
                               
+                            <tr>
+                                
+                                <!-- <td><?php echo $row['fullname']; ?></td> -->
+                               
+                                
+                              </tr>
                             </tbody>
                           </table>
                         </div>
