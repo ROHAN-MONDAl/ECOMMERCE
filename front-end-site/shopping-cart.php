@@ -438,7 +438,7 @@ any other head content must come *after* these tags -->
                                     $rowcart = "insert into corder values('','$billid','$orderdate','$customerid','$productid','$colorid','$quantity','$productsize','$ton')";
                                     if (mysqli_query($con, $rowcart)) {
                                         $rowcart = "insert into track values('$trackid','$billid','$status','$orderdate')";
-                                        mysqli_query($con, $rowcart);
+
                                         echo "<script>alert('inserted & Deleted');window.location.href='../front-end-site/empty-cart.php?>';
                             </script>";
                                         $querydel = "delete from cart where customerid='$euseremail'";

@@ -171,7 +171,7 @@ $rowtop = mysqli_fetch_assoc($restop);
                             <hr>
                             <br>
                             <!-- Single item -->
-                            <div class="row">
+                            <div class="row d-flex justify-content-center my-4">
 
                                 <?php
                                 $c = 1;
@@ -211,7 +211,8 @@ $rowtop = mysqli_fetch_assoc($restop);
                                         <!-- Image -->
                                     </div>
 
-                                    <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
+
+                                    <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
                                         <tr>
                                             <!-- Data -->
                                             <p><strong>Name :
@@ -237,50 +238,45 @@ $rowtop = mysqli_fetch_assoc($restop);
                                                 <?php
                                             }
                                             ?>
-
-                                            <button type="button" class="btn btn-primary btn-sm me-1 mb-2"
-                                                data-mdb-toggle="tooltip" title="Remove item">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
-                                            <button type="button" class="btn btn-danger btn-sm mb-2" data-mdb-toggle="tooltip"
-                                                title="Move to the wish list">
-                                                <i class="fa fa-heart" style="color:white"></i>
-                                            </button>
                                             <!-- Data -->
                                         </tr>
-
-
                                     </div>
 
-                                    
-                                    <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-
-                                   <div > Quantity =  <?php echo $rowcart['quantity']; ?></div>  
-
-                                        <!-- Price -->
-                                        <p class="text-start text-md-center">
-                                            <strong>Rs
-                                                <?php echo $rows['productprice']; ?>
-                                            </strong>
-                                        </p>
-                                        <!-- Price -->
-
-
-
+                                    <div class="col-lg-4 col-md-6 mb-4 mb-lg-0 text-start text-md-center">
+                                        <div>
+                                            <div> <strong> Quantity =
+                                                    <?php echo $rowcart['quantity']; ?>
+                                                </strong>
+                                            </div>
+                                            <!-- Price -->
+                                            <p class=" text-start text-md-center">
+                                                <strong>Rs
+                                                    <?php echo $rows['productprice']; ?>
+                                                </strong>
+                                            </p>
+                                            <!-- Price -->
+                                        </div>
                                     </div>
+                                    <strong>
+                                        <?php
+                                        $print = $rows['productprice'] * $rowcart['quantity'];
+                                        echo $print;
+                                        ?>
+                                    </strong>
                                     <?php
                                     $c++;
+
                                 }
                                 ?>
                             </div>
-                        <?php
+                            <div class="text-start text-md-center"><strong>Total Rs = <?php echo $tot ?></strong></div>
+                            
+                            <?php
                         }
                         ?>
                         <!-- Single item -->
                     </div>
                 </div>
-
-
             </div>
         </div>
         </div>
