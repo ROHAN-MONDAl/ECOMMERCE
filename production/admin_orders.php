@@ -135,28 +135,75 @@ $rowtop = mysqli_fetch_assoc($restop);
                           <table id="datatable" class="table table-striped table-bordered" style="width:100%">
                             <thead>
                               <tr class="headings">
-                                <th>
-                                  <input type="checkbox" id="check-all" class="flat">
-                                </th>
                                 <th class="column-title">Id</th>
                                 <th class="column-title">Customer Id</th>
                                 <th class="column-title">Product Name</th>
                                 <th class="column-title">Product Size</th>
                                 <th class="column-title">Color</th>
                                 <th class="column-title">Capacity</th>
-                                <th class="column-title">Product Price</th>
+                                <th class="column-title">Total Value</th>
                                 <th class="column-title">Quantity</th>
+                                <th class="column-title">Operation</th>
                                 </th>
                               </tr>
                             </thead>
                             <tbody>
-                              
-                            <tr>
-                                
-                                <!-- <td><?php echo $row['fullname']; ?></td> -->
-                               
-                                
-                              </tr>
+                                <?php
+                                $c = 1;
+                                $querycart = "select * from corder";
+                                $querycart = mysqli_query($con, $querycart);
+                                while ($rowcart = mysqli_fetch_assoc($querycart)) {
+                                  $id = $rowcart['productid'];
+                                  $queryselects = "select * from product where id='$id'";
+                                  $ress = mysqli_query($con, $queryselects);
+                                  $rows = mysqli_fetch_assoc($ress);
+                                  $cid = $rowcart['colorid'];
+                                  $queryimage = "select * from addimage where cid='$cid'";
+                                  $resimage = mysqli_query($con, $queryimage);
+                                  $rowimage = mysqli_fetch_assoc($resimage);
+
+                                  $querycolor = "select * from addcolor where id='$cid'";
+                                  $rescolor = mysqli_query($con, $querycolor);
+                                  $rowcolor = mysqli_fetch_assoc($rescolor);
+
+
+
+                                  $tot = $rows['productprice'] * $rowcart['quantity'];
+                                  ?>
+                                  <tr>
+                                    <td>
+                                      <?php echo $c; ?>
+                                    </td>
+                                    <td>
+                                      <?php echo $rowcart['customerid']; ?>
+                                    </td>
+                                    <td>
+                                      <?php echo $rows['name']; ?>
+                                    </td>
+                                    <td>
+                                      <?php echo $rowcart['productsize']; ?>
+                                    </td>
+                                    <td>
+                                      <?php echo $rowcolor['color']; ?>
+                                    </td>
+                                    <td>
+                                      <?php echo $rowcart['ton']; ?>
+                                    </td>
+                                    <td>Rs 
+                                      <?php echo $tot ?>
+                                    </td>
+                                    <td>
+                                      <?php echo $rowcart['quantity']; ?> Nos
+                                    </td> 
+                                    <td>
+                                  <a href="update.php?slno=<?php echo $row['slno']; ?>" class="btn btn-primary btn-sm active " role="button" aria-pressed="true">Edit</a>
+                                  <a href="delete.php?slno=<?php echo $row['slno']; ?>" class="btn btn-danger btn-sm active" role="button" aria-pressed="true">delete</a>
+                                </td>
+                                  </tr>
+                                  <?php
+                                  $c++;
+                                }
+                                ?>
                             </tbody>
                           </table>
                         </div>

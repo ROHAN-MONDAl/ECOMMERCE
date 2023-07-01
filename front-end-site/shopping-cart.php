@@ -413,20 +413,20 @@ any other head content must come *after* these tags -->
                             }
                             ?>
 
-
                             <?php
                             if (isset($_POST['Add_Order'])) {
-
                                 $billid = getname();
-                                date_default_timezone_set("Asia/kolkata");
+                                date_default_timezone_set("Asia/Kolkata");
                                 $date = date('Y-m-d h:i:s');
 
-                                $querycart = "select * from cart where customerid='$euseremail'";
-                                $querycart = mysqli_query($con, $querycart);
-                                while ($rowcart = mysqli_fetch_assoc($querycart)) {
+                                $querycart = "SELECT * FROM cart WHERE customerid='$euseremail'";
+                                $resultcart = mysqli_query($con, $querycart);
 
-                                    $trackid = $euseremail;
+                                while ($rowcart = mysqli_fetch_assoc($resultcart)) {
+
+                                    $ordertrackid = $rowcart['customerid'];
                                     $status = 'Order Placed';
+                                    $orderdatetime = $date;
                                     $orderdate = $date;
                                     $customerid = $rowcart['customerid'];
                                     $productid = $rowcart['productid'];
@@ -435,24 +435,20 @@ any other head content must come *after* these tags -->
                                     $productsize = $rowcart['productsize'];
                                     $ton = $rowcart['capacity'];
 
-                                    $rowcart = "insert into corder values('','$billid','$orderdate','$customerid','$productid','$colorid','$quantity','$productsize','$ton')";
-                                    if (mysqli_query($con, $rowcart)) {
-                                        $rowcart = "insert into track values('$trackid','$billid','$status','$orderdate')";
 
-                                        echo "<script>alert('inserted & Deleted');window.location.href='../front-end-site/empty-cart.php?>';
-                            </script>";
+                                    $rowcart = "INSERT INTO corder VALUES ('', '$billid', '$orderdate', '$customerid', '$productid', '$colorid', '$quantity', '$productsize', '$ton')";
+
+                                    if (mysqli_query($con, $rowcart)) {
+                                        $rowcart = "INSERT INTO ordertrack VALUES ('','$ordertrackid', '$billid', '$status', '$orderdatetime')";
+                                        mysqli_query($con, $rowcart);
                                         $querydel = "delete from cart where customerid='$euseremail'";
                                         $resdel = mysqli_query($con, $querydel);
                                         mysqli_query($con, $querydel);
+
                                     } else {
-                                        echo "<script>
-                            alert('not inserted & not Deleted');
-                            window.location.href = '../front-end-site/shopping-cart.php?>';
-                            </script>";
+                                        echo "<script>alert('Not Inserted & Not Deleted'); window.location.href = '../front-end-site/shopping-cart.php';</script>";
                                     }
-
                                 }
-
                             }
                             ?>
                         </div>
