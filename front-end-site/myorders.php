@@ -268,14 +268,22 @@ $rowtop = mysqli_fetch_assoc($restop);
 
                                 }
                                 ?>
+
                             </div>
-                            <div class="text-start text-md-center"><strong>Total Rs = <?php echo $tot ?></strong></div>
-                            
+                            <div class="text-right"><strong>Total Rs =
+                                    <?php echo $tot ?>
+                                </strong> &nbsp&nbsp&nbsp&nbsp&nbsp <a class="add_cart_btn bg-primary text-white w-25"
+                                    href="../front-end-site/trackorder.php">Track Your Order</a> &nbsp&nbsp&nbsp</div>
+                            <br>
+                            <br>
                             <?php
                         }
                         ?>
                         <!-- Single item -->
+
                     </div>
+                    <br>
+                    <br>
                 </div>
             </div>
         </div>

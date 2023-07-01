@@ -43,6 +43,45 @@ $rowtop = mysqli_fetch_assoc($restop);
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
+
+    <style>
+        .track-line {
+            height: 2px !important;
+            background-color: #488978;
+            opacity: 1;
+        }
+
+        .dot {
+            height: 10px;
+            width: 10px;
+            margin-left: 3px;
+            margin-right: 3px;
+            margin-top: 0px;
+            background-color: #488978;
+            border-radius: 50%;
+            display: inline-block
+        }
+
+        .big-dot {
+            height: 25px;
+            width: 25px;
+            margin-left: 0px;
+            margin-right: 0px;
+            margin-top: 0px;
+            background-color: #488978;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .big-dot i {
+            font-size: 12px;
+        }
+
+        .card-stepper {
+            z-index: 0
+        }
+    </style>
+
 </head>
 
 <body>
@@ -53,7 +92,9 @@ $rowtop = mysqli_fetch_assoc($restop);
             <div class="container">
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
                     <a class="navbar-brand" href="#"><img src="img/logo.png" alt=""></a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
 
                     </button>
@@ -61,21 +102,28 @@ $rowtop = mysqli_fetch_assoc($restop);
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item dropdown submenu">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
                                     Home <i class="fa fa-angle-down" aria-hidden="true"></i>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li class="nav-item"><a class="nav-link" href="home-carousel.php">Home Carousel</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="home-carousel.php">Home Carousel</a>
+                                    </li>
+                                    <li class="nav-item"><a class="nav-link" href="myorders.php">My Orders</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="trackorder.php">Track</a></li>
                                 </ul>
                             </li>
 
                             <li class="nav-item dropdown submenu">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
                                     Shop <i class="fa fa-angle-down" aria-hidden="true"></i>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li class="nav-item"><a class="nav-link" href="categories-grid-left-sidebar.php">Product Grid</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="shopping-cart.php">Shopping Cart</a></li>
+                                    <li class="nav-item"><a class="nav-link"
+                                            href="categories-grid-left-sidebar.php">Product Grid</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="shopping-cart.php">Shopping Cart</a>
+                                    </li>
                                     <li class="nav-item"><a class="nav-link" href="empty-cart.html">Empty Cart</a></li>
                                 </ul>
                             </li>
@@ -84,9 +132,11 @@ $rowtop = mysqli_fetch_assoc($restop);
                             $queryselect = "select * from euserdata where euseremail='$euseremail'";
                             $res = mysqli_query($con, $queryselect);
                             while ($row = mysqli_fetch_assoc($res)) {
-                            ?>
-                                <li class="nav-item"><a class="nav-link" href="contact.html"><?php echo $row['eusername']; ?></a></li>
-                            <?php
+                                ?>
+                                <li class="nav-item"><a class="nav-link" href="contact.html">
+                                        <?php echo $row['eusername']; ?>
+                                    </a></li>
+                                <?php
                             }
                             ?>
                         </ul>
@@ -96,13 +146,16 @@ $rowtop = mysqli_fetch_assoc($restop);
                                 <?php
                                 if (empty($_SESSION['uemailid'])) {
 
-                                ?>
-                                    <button type="button" class="btn btn-primary"><a href="../user_login/signin.php" style="color:white;">Log in</a></button>&nbsp;&nbsp;&nbsp;&nbsp;
-                                <?php
+                                    ?>
+                                    <button type="button" class="btn btn-primary"><a href="../user_login/signin.php"
+                                            style="color:white;">Log in</a></button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <?php
                                 } else {
-                                ?>
-                                    <li class="user_icon"><a href="../user_login/index.php"><i class="icon-user icons"></i></a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <?php
+                                    ?>
+                                    <li class="user_icon"><a href="../user_login/index.php"><i
+                                                class="icon-user icons"></i></a></li>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <?php
                                 }
                                 ?>
                             </div>
@@ -141,121 +194,68 @@ $rowtop = mysqli_fetch_assoc($restop);
                     <div class="card mb-4">
                         <div class="card-header py-3">
                             <h5 class="mb-0">Track Orders</h5>
-                        </div>
 
-                        <div class="card-body">
-                            <!-- Single item -->
-                            <div class="row">
-                                <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
-                                    <!-- Image -->
-                                    <!-- Image -->
-                                </div>
+                            <section class="vh-100" style="background-color: #eee;">
+                                <div class="container py-5 h-100">
+                                    <div class="row d-flex justify-content-center align-items-center h-100">
+                                        <div class="col">
+                                            <div class="card card-stepper" style="border-radius: 10px;">
+                                                <div class="card-body p-4">
 
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <div class="d-flex flex-column">
+                                                            <span class="lead fw-normal">Your order has been
+                                                                delivered</span>
+                                                            <span class="text-muted small">by DHFL on 21 Jan,
+                                                                2020</span>
+                                                        </div>
+                                                        <div>
+                                                            <button class="btn btn-outline-primary" type="button">Track
+                                                                order details</button>
+                                                        </div>
+                                                    </div>
+                                                    <hr class="my-4">
 
+                                                    <div
+                                                        class="d-flex flex-row justify-content-between align-items-center align-content-center">
+                                                        <span class="dot"></span>
+                                                        <hr class="flex-fill track-line"><span class="dot"></span>
+                                                        <hr class="flex-fill track-line"><span class="dot"></span>
+                                                        <hr class="flex-fill track-line"><span class="dot"></span>
+                                                        <hr class="flex-fill track-line"><span
+                                                            class="d-flex justify-content-center align-items-center big-dot dot">
+                                                            <i class="fa fa-check text-white"></i></span>
+                                                    </div>
 
-                                <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-                                    <!-- Quantity -->
-                                    <!-- Quantity -->
+                                                    <div
+                                                        class="d-flex flex-row justify-content-between align-items-center">
+                                                        <div class="d-flex flex-column align-items-start"><span>15
+                                                                Mar</span><span>Order placed</span>
+                                                        </div>
+                                                        <div class="d-flex flex-column justify-content-center"><span>15
+                                                                Mar</span><span>Order
+                                                                Shipped</span></div>
+                                                        <div
+                                                            class="d-flex flex-column justify-content-center align-items-center">
+                                                            <span>15
+                                                                Mar</span><span>Order Dispatched</span></div>
+                                                        <div class="d-flex flex-column align-items-center"><span>15
+                                                                Mar</span><span>Out for
+                                                                delivery</span></div>
+                                                        <div class="d-flex flex-column align-items-end"><span>15
+                                                                Mar</span><span>Delivered</span></div>
+                                                    </div>
 
-                                    <!-- Price -->
-                                    <!-- Price -->
-                                </div>
-                            </div>
-                            <!-- Single item -->
-
-                            <hr class="my-4" />
-
-                            <!-- Single item -->
-                            <div class="row">
-
-                                <?php
-                                $c = 1;
-                                $tot = 0;
-                                $querycart = "select * from cartorder where customerid='$euseremail'";
-                                $querycart = mysqli_query($con, $querycart);
-                                while ($rowcart = mysqli_fetch_assoc($querycart)) {
-
-                                    $id = $rowcart['productid'];
-                                    $queryselects = "select * from product where id='$id'";
-                                    $ress = mysqli_query($con, $queryselects);
-                                    $rows = mysqli_fetch_assoc($ress);
-
-                                    $cid = $rowcart['colorid'];
-                                    $queryimage = "select * from addimage where cid='$cid'";
-                                    $resimage = mysqli_query($con, $queryimage);
-                                    $rowimage = mysqli_fetch_assoc($resimage);
-
-                                    $querycolor = "select * from addcolor where id='$cid'";
-                                    $rescolor = mysqli_query($con, $querycolor);
-                                    $rowcolor = mysqli_fetch_assoc($rescolor);
-
-                                    $tot = $tot + $rowcart['quantity'] * $rows['productprice'];
-                                ?>
-
-                                    <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
-                                        <!-- Image -->
-                                        <div class="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
-                                            <img src="../production/dataimage/<?php echo $rowimage['image']; ?>" class="w-100" />
-                                            <a href="#!">
-                                                <div class="mask" style="background-color: rgba(251, 251, 251, 0.2)"></div>
-                                            </a>
-                                            <br>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <!-- Image -->
                                     </div>
+                                </div>
+                            </section>
 
-                                    <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
-                                        <tr>
-                                            <!-- Data -->
-                                            <p><strong>Name : <?php echo $rows['name']; ?></strong></p>
-
-                                            <?php
-                                            if ($rowcart['ton'] == 'NA') {
-                                            ?>
-                                                <p>Color: <?php echo $rowcolor['color']; ?></strong></p>
-                                                <p>Size: <?php echo $rowcart['prosize']; ?></p>
-                                            <?php
-                                            } else {
-                                            ?>
-                                                <p>TON: <?php echo $rowcart['ton']; ?></p>
-
-                                            <?php
-                                            }
-                                            ?>
-
-                                            <button type="button" class="btn btn-primary btn-sm me-1 mb-2" data-mdb-toggle="tooltip" title="Remove item">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
-                                            <button type="button" class="btn btn-danger btn-sm mb-2" data-mdb-toggle="tooltip" title="Move to the wish list">
-                                                <i class="fa fa-heart" style="color:white"></i>
-                                            </button>
-                                            <!-- Data -->
-                                        </tr>
-
-
-                                    </div>
-
-                                    <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-
-                                        <!-- Price -->
-                                        <p class="text-start text-md-center">
-                                            <strong>Rs <?php echo $rows['productprice']; ?></strong>
-                                        </p>
-                                        <!-- Price -->
-
-
-
-                                    </div>
-                                <?php
-                                    $c++;
-                                }
-                                ?>
-                            </div>
-                            <!-- Single item -->
                         </div>
+
                     </div>
-
-
                 </div>
             </div>
         </div>
@@ -271,7 +271,8 @@ $rowtop = mysqli_fetch_assoc($restop);
                     <div class="col-lg-4 col-md-4 col-6">
                         <aside class="f_widget f_about_widget">
                             <img src="img/logo.png" alt="">
-                            <p>Persuit is a Premium PSD Template. Best choice for your online store. Let purchase it to enjoy now</p>
+                            <p>Persuit is a Premium PSD Template. Best choice for your online store. Let purchase it to
+                                enjoy now</p>
                             <h6>Social:</h6>
                             <ul>
                                 <li><a href="#"><i class="social_facebook"></i></a></li>
@@ -339,12 +340,15 @@ $rowtop = mysqli_fetch_assoc($restop);
                 </div>
             </div>
             <div class="footer_copyright">
-                <h5>© <script>
+                <h5>©
+                    <script>
                         document.write(new Date().getFullYear());
                     </script> <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                    Copyright &copy;<script>
+                    Copyright &copy;
+                    <script>
                         document.write(new Date().getFullYear());
-                    </script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                    </script> All rights reserved | This template is made with <i class="fa fa-heart-o"
+                        aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                 </h5>
             </div>

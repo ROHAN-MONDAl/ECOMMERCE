@@ -424,7 +424,7 @@ any other head content must come *after* these tags -->
 
                                 while ($rowcart = mysqli_fetch_assoc($resultcart)) {
 
-                                    $ordertrackid = $rowcart['customerid'];
+                                    
                                     $status = 'Order Placed';
                                     $orderdatetime = $date;
                                     $orderdate = $date;
@@ -439,7 +439,7 @@ any other head content must come *after* these tags -->
                                     $rowcart = "INSERT INTO corder VALUES ('', '$billid', '$orderdate', '$customerid', '$productid', '$colorid', '$quantity', '$productsize', '$ton')";
 
                                     if (mysqli_query($con, $rowcart)) {
-                                        $rowcart = "INSERT INTO ordertrack VALUES ('','$ordertrackid', '$billid', '$status', '$orderdatetime')";
+                                        $rowcart = "INSERT INTO ordertrack VALUES ('', '$billid', '$status', '$orderdatetime')";
                                         mysqli_query($con, $rowcart);
                                         $querydel = "delete from cart where customerid='$euseremail'";
                                         $resdel = mysqli_query($con, $querydel);
