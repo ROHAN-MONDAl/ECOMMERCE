@@ -141,7 +141,7 @@ $rowtop = mysqli_fetch_assoc($restop);
                                                                 <th class="column-title">Bill Id</th>
                                                                 <th class="column-title">Status</th>
                                                                 <th class="column-title">Order Date & Time</th>
-
+                                                                <th class="column-title">operation</th>
                                                                 </th>
                                                             </tr>
                                                         </thead>
@@ -149,12 +149,11 @@ $rowtop = mysqli_fetch_assoc($restop);
 
                                                             <?php
                                                             $c = 1;
-                                                            $querytrack = "select DISTINCT(billid) from ordertrack";
-                                                            $querytrack = mysqli_query($con, $querytrack);
-                                                            while ($rowtrack = mysqli_fetch_assoc($querytrack)) {
-                                                                $queryt = "select * from ordertrack";
-                                                                $queryt = mysqli_query($con, $queryt);
-                                                                $rowt = mysqli_fetch_assoc($queryt);
+                                                            $querybill = "select distinct(billid) from ordertrack";
+                                                            $querybill = mysqli_query($con, $querybill);
+                                                            while ($queryrowbill = mysqli_fetch_assoc($querybill)) {
+
+
                                                                 ?>
 
                                                                 <tr>
@@ -162,16 +161,30 @@ $rowtop = mysqli_fetch_assoc($restop);
                                                                         <?php echo $c; ?>
                                                                     </td>
                                                                     <td>
-                                                                        <?php echo $rowtrack['billid']; ?>
+                                                                        <?php echo $queryrowbill['billid']; ?>
+                                                                    </td>
+                                                                    <?php
+                                                                    $tid = $queryrowbill['billid'];
+                                                                    $querytrack = "select * from ordertrack where billid='$tid'";
+                                                                    $querytrack = mysqli_query($con, $querytrack);
+                                                                    $rowtrack = mysqli_fetch_assoc($querytrack);
+                                                                    ?>
+                                                                    <td>
+                                                                        <?php echo $rowtrack['status']; ?>
                                                                     </td>
                                                                     <td>
-                                                                        <?php echo $row['status']; ?>
+                                                                        <?php echo $rowtrack['orderdatetime']; ?>
                                                                     </td>
                                                                     <td>
-                                                                        <?php echo $row['orderdatetime']; ?>
+                                                                        <a href="trackop.php?id=<?php echo $rowtrack['billid']; ?>"
+                                                                            class="btn btn-primary btn-sm active "
+                                                                            role="button" aria-pressed="true">Edit</a>
+
+
                                                                     </td>
                                                                 </tr>
-                                                                <?php $c++;
+                                                                <?php
+                                                                $c++;
                                                             }
                                                             ?>
                                                         </tbody>

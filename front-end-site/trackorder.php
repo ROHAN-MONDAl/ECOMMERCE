@@ -142,23 +142,23 @@ $rowtop = mysqli_fetch_assoc($restop);
                         </ul>
                         <ul class="navbar-nav justify-content-end">
 
-                            <div>
-                                <?php
-                                if (empty($_SESSION['uemailid'])) {
 
-                                    ?>
-                                    <button type="button" class="btn btn-primary"><a href="../user_login/signin.php"
-                                            style="color:white;">Log in</a></button>&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <?php
-                                } else {
-                                    ?>
-                                    <li class="user_icon"><a href="../user_login/index.php"><i
-                                                class="icon-user icons"></i></a></li>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <?php
-                                }
+                            <?php
+                            if (empty($_SESSION['uemailid'])) {
+
                                 ?>
-                            </div>
+                                <button type="button" class="btn btn-primary"><a href="../user_login/signin.php"
+                                        style="color:white;">Log in</a></button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <?php
+                            } else {
+                                ?>
+                                <li class="user_icon"><a href="../user_login/index.php"><i class="icon-user icons"></i></a>
+                                </li>
+                                <li class="cart_cart"><a href="../front-end-site/shopping-cart.php"><i
+                                            class="icon-handbag icons"></i></a></li>
+                                <?php
+                            }
+                            ?>
                         </ul>
                     </div>
                 </nav>
@@ -200,7 +200,22 @@ $rowtop = mysqli_fetch_assoc($restop);
                                     <div class="row d-flex justify-content-center align-items-center h-100">
                                         <div class="col">
                                             <div class="card card-stepper" style="border-radius: 10px;">
+
+
+
+
                                                 <div class="card-body p-4">
+
+
+                                                    <?php
+                                                    $queryt = "select * from ordertrack";
+                                                    $queryt = mysqli_query($con, $queryt);
+                                                    $rowt = mysqli_fetch_assoc($queryt);
+                                                    ?>
+
+
+
+
 
                                                     <div class="d-flex justify-content-between align-items-center">
                                                         <div class="d-flex flex-column">
@@ -210,8 +225,10 @@ $rowtop = mysqli_fetch_assoc($restop);
                                                                 2020</span>
                                                         </div>
                                                         <div>
-                                                            <button class="btn btn-outline-primary" type="button">Track
-                                                                order details</button>
+                                                            <li class="btn btn-outline-primary bg-primary"><a
+                                                                    class="text-white"
+                                                                    href="http:../front-end-site/myorders.php">My
+                                                                    order details</a></li>
                                                         </div>
                                                     </div>
                                                     <hr class="my-4">
@@ -238,7 +255,8 @@ $rowtop = mysqli_fetch_assoc($restop);
                                                         <div
                                                             class="d-flex flex-column justify-content-center align-items-center">
                                                             <span>15
-                                                                Mar</span><span>Order Dispatched</span></div>
+                                                                Mar</span><span>Order Dispatched</span>
+                                                        </div>
                                                         <div class="d-flex flex-column align-items-center"><span>15
                                                                 Mar</span><span>Out for
                                                                 delivery</span></div>
@@ -246,7 +264,20 @@ $rowtop = mysqli_fetch_assoc($restop);
                                                                 Mar</span><span>Delivered</span></div>
                                                     </div>
 
+
+
+
+
+
+
+
                                                 </div>
+
+
+
+
+
+
                                             </div>
                                         </div>
                                     </div>

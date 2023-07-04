@@ -64,7 +64,8 @@ $s = $_SESSION["emailid"];
             <div class="col-md-3 left_col">
                 <div class="left_col scroll-view">
                     <div class="navbar nav_title" style="border: 0;">
-                        <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Gentelella Alela!</span></a>
+                        <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Gentelella
+                                Alela!</span></a>
                     </div>
 
                     <div class="clearfix"></div>
@@ -116,15 +117,21 @@ $s = $_SESSION["emailid"];
                                 </div>
                                 <div class="x_content">
                                     <br />
-                                    <form name="usersdata" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="POST" enctype="multipart/form-data">
+                                    <form name="usersdata" id="demo-form2" data-parsley-validate
+                                        class="form-horizontal form-label-left" method="POST"
+                                        enctype="multipart/form-data">
                                         <!-- upload profile photo -->
                                         <div class="d-flex justify-content-center mb-4">
-                                            <img src="adminupload/<?php echo $row['profilephoto']; ?>" class="rounded-circle" id="photo-preview" alt="example placeholder" style="width: 100px; height: 100px;" />
+                                            <img src="adminupload/<?php echo $row['profilephoto']; ?>"
+                                                class="rounded-circle" id="photo-preview" alt="example placeholder"
+                                                style="width: 100px; height: 100px;" />
                                         </div>
                                         <div class="d-flex justify-content-center">
                                             <div class="btn btn-primary btn-rounded">
-                                                <label class="form-label text-white m-1" for="profile-photo"> Choose file</label>
-                                                <input type="file" name="file" class="form-control d-none" id="profile-photo" onchange="displayPhoto()" />
+                                                <label class="form-label text-white m-1" for="profile-photo"> Choose
+                                                    file</label>
+                                                <input type="file" name="file" class="form-control d-none"
+                                                    id="profile-photo" onchange="displayPhoto()" />
                                             </div>
                                         </div>
                                         <!-- /upload profile photo -->
@@ -134,59 +141,72 @@ $s = $_SESSION["emailid"];
                                                 <span class="required"></span>
                                             </label>
                                             <div class="col-md-6 col-sm-6 ">
-                                                <input type="text" name="fullname" id="first-name" class="form-control" value="<?php echo $row['fullname']; ?>">
+                                                <input type="text" name="fullname" id="first-name" class="form-control"
+                                                    value="<?php echo $row['fullname']; ?>">
                                             </div>
                                         </div>
 
                                         <div class="item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="">Phone Number <span class="required"></span>
+                                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="">Phone
+                                                Number <span class="required"></span>
                                             </label>
                                             <div class="col-md-6 col-sm-6 ">
-                                                <input type="text" name="phonenumber" id="" class="form-control" value="<?php echo $row['phonenumber']; ?>">
+                                                <input type="text" name="phonenumber" id="" class="form-control"
+                                                    value="<?php echo $row['phonenumber']; ?>">
                                             </div>
                                         </div>
 
                                         <div class="item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="">Email id <span class="required"></span>
+                                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="">Email id
+                                                <span class="required"></span>
                                             </label>
                                             <div class="col-md-6 col-sm-6 ">
-                                                <input type="text" name="emailid" id="" class="form-control" value="<?php echo $row['emailid']; ?>">
+                                                <input type="text" name="emailid" id="" class="form-control"
+                                                    value="<?php echo $row['emailid']; ?>">
                                             </div>
                                         </div>
 
                                         <div class="item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="">Gender<span class="required"></span>
+                                            <label class="col-form-label col-md-3 col-sm-3 label-align"
+                                                for="">Gender<span class="required"></span>
                                             </label>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" name="gen" type="radio" id="Male" value="Male" checked />
+                                                <input class="form-check-input" name="gen" type="radio" id="Male"
+                                                    value="Male" checked />
                                                 <label class="form-check-label" for="Male">Male</label>
                                             </div>
 
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" name="gen" type="radio" id="female" value="female" />
+                                                <input class="form-check-input" name="gen" type="radio" id="female"
+                                                    value="female" />
                                                 <label class="form-check-label" for="female">Female</label>
                                             </div>
                                         </div>
 
                                         <div class="item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="">Date Of Birth<span class="required"></span>
+                                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="">Date Of
+                                                Birth<span class="required"></span>
                                             </label>
                                             <div class="col-md-6 col-sm-6">
-                                                <input type="date" name="dob" id="dob" class="form-control" value="<?php echo $row['dob']; ?>">
+                                                <input type="date" name="dob" id="dob" class="form-control"
+                                                    value="<?php echo $row['dob']; ?>">
                                             </div>
                                         </div>
 
                                         <div class="item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="useraddress">Enter your address<span class="required"></span>
+                                            <label class="col-form-label col-md-3 col-sm-3 label-align"
+                                                for="useraddress">Enter your address<span class="required"></span>
                                             </label>
                                             <div class="col-md-6 col-sm-6 ">
-                                                <input type="text" name="useraddress" id="useraddress" class="form-control" value="<?php echo $row['useraddress']; ?>">
+                                                <input type="text" name="useraddress" id="useraddress"
+                                                    class="form-control" value="<?php echo $row['useraddress']; ?>">
                                             </div>
                                         </div>
                                         <br>
                                         <div class="item form-group">
                                             <div class="col-md-6 col-sm-6 offset-md-3">
-                                                <input type="submit" value="update" name="update" class="btn btn-primary">
+                                                <input type="submit" value="update" name="update"
+                                                    class="btn btn-primary">
                                             </div>
                                         </div>
                                     </form>

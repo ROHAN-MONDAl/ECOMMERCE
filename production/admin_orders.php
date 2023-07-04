@@ -137,6 +137,7 @@ $rowtop = mysqli_fetch_assoc($restop);
                               <tr class="headings">
                                 <th class="column-title">Id</th>
                                 <th class="column-title">Customer Id</th>
+                                <th class="column-title">Bill No</th>
                                 <th class="column-title">Product Name</th>
                                 <th class="column-title">Product Size</th>
                                 <th class="column-title">Color</th>
@@ -176,6 +177,9 @@ $rowtop = mysqli_fetch_assoc($restop);
                                     </td>
                                     <td>
                                       <?php echo $rowcart['customerid']; ?>
+                                    </td>
+                                    <td>
+                                      <?php echo $rowcart['billid']; ?>
                                     </td>
                                     <td>
                                       <?php echo $rows['name']; ?>
