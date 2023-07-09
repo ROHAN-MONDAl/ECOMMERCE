@@ -138,18 +138,20 @@ $rowtop = mysqli_fetch_assoc($restop);
 
 
                                                         <label class="col-form-label col-md-3 col-sm-3 label-align"
-                                                            for="">Category Name
+                                                            for="">Name
                                                             <span class="required"></span>
                                                         </label>
                                                         <div class="col-md-6 col-sm-6 ">
 
                                                             <select name="status" class="form-control">
 
-                                                                <option value="Order Placed">Select</option>
+                                                                <option>Select</option>
+                                                                <option value="Order Placed">Order Placed</option>
                                                                 <option value="Order Shipped">Order Shipped</option>
                                                                 <option value="Order Dispatched">Order Dispatched
                                                                 </option>
-                                                                <option value="Out for delivery">Out for delivery</option>
+                                                                <option value="Out for delivery">Out for delivery
+                                                                </option>
                                                                 <option value="Delivered">Delivered</option>
 
                                                             </select>
@@ -160,29 +162,68 @@ $rowtop = mysqli_fetch_assoc($restop);
                                                 <br>
 
                                                 <div class="col-md-6 col-sm-6 offset-md-3">
-                                                    <button type="submit" name="update"
-                                                        class="btn btn-success">Update</button>
+                                                    <button type="submit" name="Add"
+                                                        class="btn btn-success">Add</button>
                                                 </div>
                                             </div>
                                             </form>
 
                                             <?php
-                                            if (isset($_POST['update'])) {
-
+                                            if (isset($_POST['Add'])) {
 
                                                 $status = $_POST['status'];
-                                                $billid = $_GET['id'];
-
-                                                $sql = "UPDATE ordertrack SET status='$status' where billid = '$billid'";
-                                            
-                                                if (mysqli_query($con, $sql)) {
-                                                    echo "<script>alert('your data will be saved');window.location.href='../production/admin_Trackoreder.php'</script>";
+                                                $id= $_GET['id'];
+                                                date_default_timezone_set("Asia/Kolkata");
+                                                $date = date('Y-m-d h:i:s');
+                                                $query = "insert into ordertrack values('','$id','$status','$date')";
+                                                if (mysqli_query($con, $query)) {
+                                                    echo "<script>alert('inserted');</script>";
                                                 } else {
-                                                    echo "<script>alert('your data will be not saved')</script>";
+                                                    echo "<script>alert('not inserted');</script>";
                                                 }
-                                            
                                             }
                                             ?>
+
+                                            <table id="datatable" class="table table-striped table-bordered"
+                                                style="width:100%">
+                                                <thead>
+                                                    <tr class="headings">
+                                                        <th class="column-title">Id</th>
+                                                        <th class="column-title">Status</th>
+                                                        <th class="column-title">Order Date & Time</th>
+
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    <?php
+                                                    $c = 1;
+                                                    $billid = $_GET['id'];
+                                                    $querybill = "select * from ordertrack where billid = '$billid'";
+                                                    $querybill = mysqli_query($con, $querybill);
+                                                    while ($queryrowbill = mysqli_fetch_assoc($querybill)) {
+                                                        ?>
+
+                                                        <tr>
+                                                            <td>
+                                                                <?php echo $c; ?>
+                                                            </td>
+                                                            <td>
+                                                                <?php echo $queryrowbill['status']; ?>
+                                                            </td>
+                                                            <td>
+                                                                <?php echo $queryrowbill['orderdatetime']; ?>
+                                                            </td>
+
+                                                        </tr>
+                                                        <?php
+                                                        $c++;
+                                                    }
+                                                    ?>
+                                                </tbody>
+                                            </table>
+
 
                                         </div>
                                     </div>

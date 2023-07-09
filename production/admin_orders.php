@@ -200,7 +200,7 @@ $rowtop = mysqli_fetch_assoc($restop);
                                       <?php echo $rowcart['quantity']; ?> Nos
                                     </td> 
                                     <td>
-                                  <a href="../production/admin_Trackoreder.php" class="btn btn-primary btn-sm active " role="button" aria-pressed="true">Edit Track Order</a>
+                                  <a href="../production/admin_Trackoreder.php?id=<?php echo $rowcart['billid']; ?>" class="btn btn-primary btn-sm active " role="button" aria-pressed="true">Edit Track Order</a>
                                   <a href="delete.php?slno=<?php echo $row['slno']; ?>" class="btn btn-danger btn-sm active" role="button" aria-pressed="true">delete</a>
                                 </td>
                                   </tr>

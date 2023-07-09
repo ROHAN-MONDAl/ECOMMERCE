@@ -273,7 +273,7 @@ $rowtop = mysqli_fetch_assoc($restop);
                             <div class="text-right"><strong>Total Rs =
                                     <?php echo $tot ?>
                                 </strong> &nbsp&nbsp&nbsp&nbsp&nbsp <a class="add_cart_btn bg-primary text-white w-25"
-                                    href="../front-end-site/trackorder.php">Track Your Order</a> &nbsp&nbsp&nbsp</div>
+                                    href="../front-end-site/trackorder.php?id=<?php echo $rowtrack['billid']; ?>">Track Your Order</a> &nbsp&nbsp&nbsp</div>
                             <br>
                             <br>
                             <?php

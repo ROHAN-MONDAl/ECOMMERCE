@@ -146,14 +146,12 @@ $rowtop = mysqli_fetch_assoc($restop);
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-
                                                             <?php
                                                             $c = 1;
-                                                            $querybill = "select distinct(billid) from ordertrack";
-                                                            $querybill = mysqli_query($con, $querybill);
-                                                            while ($queryrowbill = mysqli_fetch_assoc($querybill)) {
-
-
+                                                            $billid = $_GET['id'];
+                                                            $querytrack = "select * from ordertrack where billid = '$billid'";
+                                                            $querytrack = mysqli_query($con, $querytrack);
+                                                            while ($rowtrack = mysqli_fetch_assoc($querytrack)) {
                                                                 ?>
 
                                                                 <tr>
@@ -161,14 +159,8 @@ $rowtop = mysqli_fetch_assoc($restop);
                                                                         <?php echo $c; ?>
                                                                     </td>
                                                                     <td>
-                                                                        <?php echo $queryrowbill['billid']; ?>
+                                                                        <?php echo $rowtrack['billid']; ?>
                                                                     </td>
-                                                                    <?php
-                                                                    $tid = $queryrowbill['billid'];
-                                                                    $querytrack = "select * from ordertrack where billid='$tid'";
-                                                                    $querytrack = mysqli_query($con, $querytrack);
-                                                                    $rowtrack = mysqli_fetch_assoc($querytrack);
-                                                                    ?>
                                                                     <td>
                                                                         <?php echo $rowtrack['status']; ?>
                                                                     </td>

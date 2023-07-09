@@ -45,40 +45,105 @@ $rowtop = mysqli_fetch_assoc($restop);
         <![endif]-->
 
     <style>
-        .track-line {
-            height: 2px !important;
-            background-color: #488978;
-            opacity: 1;
-        }
-
-        .dot {
-            height: 10px;
-            width: 10px;
-            margin-left: 3px;
-            margin-right: 3px;
-            margin-top: 0px;
-            background-color: #488978;
-            border-radius: 50%;
-            display: inline-block
-        }
-
-        .big-dot {
-            height: 25px;
-            width: 25px;
-            margin-left: 0px;
-            margin-right: 0px;
-            margin-top: 0px;
-            background-color: #488978;
-            border-radius: 50%;
-            display: inline-block;
-        }
-
-        .big-dot i {
-            font-size: 12px;
-        }
-
         .card-stepper {
             z-index: 0
+        }
+
+        #progressbar-2 {
+            color: #455A64;
+        }
+
+        #progressbar-2 li {
+            list-style-type: none;
+            font-size: 13px;
+            width: 33.33%;
+            float: left;
+            position: relative;
+        }
+
+        #progressbar-2 #step1:before {
+            content: '\f058';
+            font-family: "Font Awesome 5 Free";
+            color: #fff;
+            width: 37px;
+            margin-left: 0px;
+            padding-left: 0px;
+        }
+
+        #progressbar-2 #step2:before {
+            content: '\f058';
+            font-family: "Font Awesome 5 Free";
+            color: #fff;
+            width: 37px;
+        }
+
+        #progressbar-2 #step3:before {
+            content: '\f058';
+            font-family: "Font Awesome 5 Free";
+            color: #fff;
+            width: 37px;
+            margin-right: 0;
+            text-align: center;
+        }
+
+        #progressbar-2 #step4:before {
+            content: '\f111';
+            font-family: "Font Awesome 5 Free";
+            color: #fff;
+            width: 37px;
+            margin-right: 0;
+            text-align: center;
+        }
+
+        #progressbar-2 li:before {
+            line-height: 37px;
+            display: block;
+            font-size: 12px;
+            background: #c5cae9;
+            border-radius: 50%;
+        }
+
+        #progressbar-2 li:after {
+            content: '';
+            width: 100%;
+            height: 10px;
+            background: #c5cae9;
+            position: absolute;
+            left: 0%;
+            right: 0%;
+            top: 15px;
+            z-index: -1;
+        }
+
+        #progressbar-2 li:nth-child(1):after {
+            left: 1%;
+            width: 100%
+        }
+
+        #progressbar-2 li:nth-child(2):after {
+            left: 1%;
+            width: 100%;
+        }
+
+        #progressbar-2 li:nth-child(3):after {
+            left: 1%;
+            width: 100%;
+            background: #c5cae9 !important;
+        }
+
+        #progressbar-2 li:nth-child(4) {
+            left: 0;
+            width: 37px;
+        }
+
+        #progressbar-2 li:nth-child(4):after {
+            left: 0;
+            width: 0;
+        }
+
+        #progressbar-2 li.active:before,
+        #progressbar-2 li.active:after {
+            background: #6520ff;
         }
     </style>
 
@@ -106,6 +171,8 @@ $rowtop = mysqli_fetch_assoc($restop);
                                     aria-haspopup="true" aria-expanded="false">
                                     Home <i class="fa fa-angle-down" aria-hidden="true"></i>
                                 </a>
+
+
                                 <ul class="dropdown-menu">
                                     <li class="nav-item"><a class="nav-link" href="home-carousel.php">Home Carousel</a>
                                     </li>
@@ -169,130 +236,190 @@ $rowtop = mysqli_fetch_assoc($restop);
 
 
 
+    <!--================ Body =================-->
 
 
+    <section class="vh-100" style="background-color: #8c9eff;">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12">
+                    <div class="card card-stepper text-black" style="border-radius: 16px;">
+
+                        <div class="card-body p-5">
+
+                            <div class="d-flex justify-content-between align-items-center mb-5">
+                                <div>
+                                    <h5 class="mb-0">INVOICE <span class="text-primary font-weight-bold">#Y34XDHR</span>
+                                    </h5>
+                                </div>
+                                <div class="text-end">
+                                    <p class="mb-0">Expected Arrival <span>01/12/19</span></p>
+                                    <p class="mb-0">USPS <span class="font-weight-bold">234094567242423422898</span></p>
+                                </div>
+                            </div>
+
+                            <?php
+                            $id = $_GET['id'];
+                            $i = 0;
+                            $queryt = "select * from ordertrack where billid = '$id'";
+                            $queryres = mysqli_query($con, $queryt);
+                            while ($rowt = mysqli_fetch_assoc($queryres)) {
+                                $a[$i] = $rowt['status'];
+                                $d[$i] = $rowt['orderdatetime'];
+                                $i++;
+                            }
+                            ?>
+
+                            <ul id="progressbar-2" class="d-flex justify-content-between mx-0 mt-0 mb-5 px-0 pt-0 pb-2">
+
+                                   <!-- <?php
+                                    if ($a[0] = "Order Placed") {
+                                        ?> 
+                                    <li class="step0 active text-center" id="step1"></li>
+                                    <?php
+                                } else {
+                                    ?>
+                                    <li class="step0 text-center" id="step1"></li>
+                                    <?php
+                                }
+                                ?>
+
+                               <?php
+                                if ($a[1] = "Order Shipped") {
+                                    ?>
+                                    <li class="step0 active text-center" id="step2"></li>
+                                    <?php
+                                } else {
+                                    ?>
+                                    <li class="step0 text-center" id="step2"></li>
+                                    <?php
+                                }
+                                ?>
+
+                                <?php
+                                if ($a[2] = "Order Dispatched") {
+                                    ?>
+                                    <li class="step0 active text-center" id="step3"></li>
+                                    <?php
+                                } else {
+                                    ?>
+                                    <li class="step0 text-center" id="step3"></li>
+                                    <?php
+                                }
+                                ?>
 
 
+                                <?php
+                                if ($a[3] = "Out For Delivery") {
+                                    ?>
+                                    <li class="step0 active text-center" id="step4"></li>
+                                    <?php
+                                } else {
+                                    ?>
+                                    <li class="step0 text-center" id="step4"></li>
+                                    <?php
+                                }
+                                ?>
 
-    <!--================Categories Banner Area =================-->
-    <style>
-        .gradient-custom {
-            /* fallback for old browsers */
-            background: #6a11cb;
+                                <?php
+                                if ($a[4] = "Delivered") {
+                                    ?>
+                                    <li class="step0 active text-muted text-end" id="step5"></li>
+                                    <?php
+                                } else {
+                                    ?>
+                                    <li class="step0 text-muted text-end" id="step5"></li>
+                                    <?php
+                                }
+                                ?>  -->
 
-            /* Chrome 10-25, Safari 5.1-6 */
-            background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+                            </ul>
 
-            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-            background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
-        }
-    </style>
-    <section class=" gradient-custom">
-        <div class="container py-5">
-            <div class="row d-flex justify-content-center my-4">
-                <div class="col-md-8">
-                    <div class="card mb-4">
-                        <div class="card-header py-3">
-                            <h5 class="mb-0">Track Orders</h5>
-
-                            <section class="vh-100" style="background-color: #eee;">
-                                <div class="container py-5 h-100">
-                                    <div class="row d-flex justify-content-center align-items-center h-100">
-                                        <div class="col">
-                                            <div class="card card-stepper" style="border-radius: 10px;">
-
-
+                            <div class="d-flex justify-content-between">
 
 
-                                                <div class="card-body p-4">
-
-
-                                                    <?php
-                                                    $queryt = "select * from ordertrack";
-                                                    $queryt = mysqli_query($con, $queryt);
-                                                    $rowt = mysqli_fetch_assoc($queryt);
-                                                    ?>
-
-
-
-
-
-                                                    <div class="d-flex justify-content-between align-items-center">
-                                                        <div class="d-flex flex-column">
-                                                            <span class="lead fw-normal">Your order has been
-                                                                delivered</span>
-                                                            <span class="text-muted small">by DHFL on 21 Jan,
-                                                                2020</span>
-                                                        </div>
-                                                        <div>
-                                                            <li class="btn btn-outline-primary bg-primary"><a
-                                                                    class="text-white"
-                                                                    href="http:../front-end-site/myorders.php">My
-                                                                    order details</a></li>
-                                                        </div>
-                                                    </div>
-                                                    <hr class="my-4">
-
-                                                    <div
-                                                        class="d-flex flex-row justify-content-between align-items-center align-content-center">
-                                                        <span class="dot"></span>
-                                                        <hr class="flex-fill track-line"><span class="dot"></span>
-                                                        <hr class="flex-fill track-line"><span class="dot"></span>
-                                                        <hr class="flex-fill track-line"><span class="dot"></span>
-                                                        <hr class="flex-fill track-line"><span
-                                                            class="d-flex justify-content-center align-items-center big-dot dot">
-                                                            <i class="fa fa-check text-white"></i></span>
-                                                    </div>
-
-                                                    <div
-                                                        class="d-flex flex-row justify-content-between align-items-center">
-                                                        <div class="d-flex flex-column align-items-start"><span>15
-                                                                Mar</span><span>Order placed</span>
-                                                        </div>
-                                                        <div class="d-flex flex-column justify-content-center"><span>15
-                                                                Mar</span><span>Order
-                                                                Shipped</span></div>
-                                                        <div
-                                                            class="d-flex flex-column justify-content-center align-items-center">
-                                                            <span>15
-                                                                Mar</span><span>Order Dispatched</span>
-                                                        </div>
-                                                        <div class="d-flex flex-column align-items-center"><span>15
-                                                                Mar</span><span>Out for
-                                                                delivery</span></div>
-                                                        <div class="d-flex flex-column align-items-end"><span>15
-                                                                Mar</span><span>Delivered</span></div>
-                                                    </div>
-
-
-
-
-
-
-
-
-                                                </div>
-
-
-
-
-
-
-                                            </div>
-                                        </div>
+                                <div class="d-lg-flex align-items-center">
+                                    <i class="fas fa-clipboard-list fa-3x me-lg-4 mb-3 mb-lg-0"></i>
+                                    <div>
+                                        <?php
+                                    if ($d[0] = "Order Placed") {
+                                    ?>   
+                                            <p class="fw-bold mb-1">Order Placed</p>
+                                            <?php
+                                }
+                                ?>
                                     </div>
                                 </div>
-                            </section>
+
+
+                                <div class="d-lg-flex align-items-center">
+                                    <i class="fa fa-box-open fa-3x me-lg-4 mb-3 mb-lg-0"></i>
+                                    <div>
+                                        <?php
+                                        if ($d[1] = "Order Shipped") {
+                                            ?>
+                                            <p class="fw-bold mb-1">Order Shipped</p>
+                                            <?php
+                                        }
+                                        ?>
+                                    </div>
+                                </div>
+
+
+                                 <div class="d-lg-flex align-items-center">
+                                    <i class="fas fa-shipping-fast fa-3x me-lg-4 mb-3 mb-lg-0"></i>
+                                    <div>
+                                        <?php
+                                        if ($d[2] = "Order Dispatched") {
+                                            ?>
+                                            <p class="fw-bold mb-1">Order Dispatched</p>
+                                            <?php
+                                        }
+                                        ?>
+                                    </div>
+                                </div>
+
+                               <div class="d-lg-flex align-items-center">
+                                    <i class="fas fa-shipping-fast fa-3x me-lg-4 mb-3 mb-lg-0"></i>
+                                    <div>
+                                        <?php
+                                        if ($d[3] = "Out For Delivery") {
+                                            ?>
+                                            <p class="fw-bold mb-1">Out For Delivery</p>
+                                            <?php
+                                        }
+                                        ?>
+                                    </div>
+                                </div>
+
+                                <div class="d-lg-flex align-items-center">
+                                    <i class="fas fa-home fa-3x me-lg-4 mb-3 mb-lg-0"></i>
+                                    <div>
+                                        <?php
+                                        if ($d[4] = "Order Delivered") {
+                                            ?>
+                                            <p class="fw-bold mb-1">Order Delivered</p>
+                                            <?php
+                                        }
+                                        ?>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+
+
 
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!--================End Shopping Cart Area =================-->
+    <!--================ Body =================-->
 
     <!--================Footer Area =================-->
     <footer class="footer_area">
