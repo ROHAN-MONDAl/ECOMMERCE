@@ -270,11 +270,11 @@ $rowtop = mysqli_fetch_assoc($restop);
                             }
                             ?>
 
-                            <ul id="progressbar-2" class="d-flex justify-content-between mx-0 mt-0 mb-5 px-0 pt-0 pb-2">
 
-                                   <!-- <?php
-                                    if ($a[0] = "Order Placed") {
-                                        ?> 
+                            <!-- <ul id="progressbar-2" class="d-flex justify-content-between mx-0 mt-0 mb-5 px-0 pt-0 pb-2">
+                                <?php
+                                if ($a[1] == "Order Placed") {
+                                    ?>
                                     <li class="step0 active text-center" id="step1"></li>
                                     <?php
                                 } else {
@@ -284,8 +284,8 @@ $rowtop = mysqli_fetch_assoc($restop);
                                 }
                                 ?>
 
-                               <?php
-                                if ($a[1] = "Order Shipped") {
+                                <?php
+                                if ($a[2] == "Order Shipped") {
                                     ?>
                                     <li class="step0 active text-center" id="step2"></li>
                                     <?php
@@ -295,113 +295,79 @@ $rowtop = mysqli_fetch_assoc($restop);
                                     <?php
                                 }
                                 ?>
-
+                                
+                                
                                 <?php
-                                if ($a[2] = "Order Dispatched") {
+                                if ($a[3] == "Order Despatched") {
                                     ?>
                                     <li class="step0 active text-center" id="step3"></li>
-                                    <?php
+                                <?php
                                 } else {
                                     ?>
                                     <li class="step0 text-center" id="step3"></li>
-                                    <?php
+                                <?php
                                 }
                                 ?>
 
-
                                 <?php
-                                if ($a[3] = "Out For Delivery") {
+                                if ($a[4] == "Order Delivered") {
                                     ?>
                                     <li class="step0 active text-center" id="step4"></li>
-                                    <?php
+                                <?php
                                 } else {
                                     ?>
                                     <li class="step0 text-center" id="step4"></li>
-                                    <?php
+                                <?php
                                 }
                                 ?>
 
-                                <?php
-                                if ($a[4] = "Delivered") {
-                                    ?>
-                                    <li class="step0 active text-muted text-end" id="step5"></li>
-                                    <?php
-                                } else {
-                                    ?>
-                                    <li class="step0 text-muted text-end" id="step5"></li>
-                                    <?php
-                                }
-                                ?>  -->
-
-                            </ul>
+                            </ul> -->
 
                             <div class="d-flex justify-content-between">
 
 
                                 <div class="d-lg-flex align-items-center">
-                                    <i class="fas fa-clipboard-list fa-3x me-lg-4 mb-3 mb-lg-0"></i>
+                                    <i class="fa-3x me-lg-4 mb-3 mb-lg-0"></i>
                                     <div>
-                                        <?php
-                                    if ($d[0] = "Order Placed") {
-                                    ?>   
-                                            <p class="fw-bold mb-1">Order Placed</p>
-                                            <?php
-                                }
-                                ?>
+                                        <p class="fw-bold mb-1">
+                                            <?php echo "Order Placed" ?>
+                                            <?php echo $d[1] ?>
+                                        </p>
                                     </div>
                                 </div>
 
 
                                 <div class="d-lg-flex align-items-center">
-                                    <i class="fa fa-box-open fa-3x me-lg-4 mb-3 mb-lg-0"></i>
+                                    <i class="fa-3x me-lg-4 mb-3 mb-lg-0"></i>
                                     <div>
-                                        <?php
-                                        if ($d[1] = "Order Shipped") {
-                                            ?>
-                                            <p class="fw-bold mb-1">Order Shipped</p>
-                                            <?php
-                                        }
-                                        ?>
+                                        <p class="fw-bold mb-1">
+                                            <?php echo "Order Shipped" ?>
+                                            <?php echo $d[2] ?>
+                                        </p>
+
                                     </div>
                                 </div>
 
-
-                                 <div class="d-lg-flex align-items-center">
-                                    <i class="fas fa-shipping-fast fa-3x me-lg-4 mb-3 mb-lg-0"></i>
-                                    <div>
-                                        <?php
-                                        if ($d[2] = "Order Dispatched") {
-                                            ?>
-                                            <p class="fw-bold mb-1">Order Dispatched</p>
-                                            <?php
-                                        }
-                                        ?>
-                                    </div>
-                                </div>
-
-                               <div class="d-lg-flex align-items-center">
-                                    <i class="fas fa-shipping-fast fa-3x me-lg-4 mb-3 mb-lg-0"></i>
-                                    <div>
-                                        <?php
-                                        if ($d[3] = "Out For Delivery") {
-                                            ?>
-                                            <p class="fw-bold mb-1">Out For Delivery</p>
-                                            <?php
-                                        }
-                                        ?>
-                                    </div>
-                                </div>
 
                                 <div class="d-lg-flex align-items-center">
-                                    <i class="fas fa-home fa-3x me-lg-4 mb-3 mb-lg-0"></i>
+                                    <i class="fa-3x me-lg-4 mb-3 mb-lg-0"></i>
                                     <div>
-                                        <?php
-                                        if ($d[4] = "Order Delivered") {
-                                            ?>
-                                            <p class="fw-bold mb-1">Order Delivered</p>
-                                            <?php
-                                        }
-                                        ?>
+                                        <p class="fw-bold mb-1">
+                                            <?php echo "Order Despatched" ?>
+                                            <?php echo $d[3] ?>
+                                        </p>
+
+                                    </div>
+                                </div>
+
+
+                                <div class="d-lg-flex align-items-center">
+                                    <i class=" fa-3x me-lg-4 mb-3 mb-lg-0"></i>
+                                    <div>
+                                        <p class="fw-bold mb-1">
+                                            <?php echo "Order Delivered" ?>
+                                            <?php echo $d[4] ?>
+                                        </p>
                                     </div>
                                 </div>
 

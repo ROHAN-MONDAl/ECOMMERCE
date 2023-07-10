@@ -150,8 +150,6 @@ $rowtop = mysqli_fetch_assoc($restop);
                                                                 <option value="Order Shipped">Order Shipped</option>
                                                                 <option value="Order Dispatched">Order Dispatched
                                                                 </option>
-                                                                <option value="Out for delivery">Out for delivery
-                                                                </option>
                                                                 <option value="Delivered">Delivered</option>
 
                                                             </select>
@@ -172,59 +170,17 @@ $rowtop = mysqli_fetch_assoc($restop);
                                             if (isset($_POST['Add'])) {
 
                                                 $status = $_POST['status'];
-                                                $id= $_GET['id'];
+                                                $id = $_GET['id'];
                                                 date_default_timezone_set("Asia/Kolkata");
                                                 $date = date('Y-m-d h:i:s');
                                                 $query = "insert into ordertrack values('','$id','$status','$date')";
                                                 if (mysqli_query($con, $query)) {
-                                                    echo "<script>alert('inserted');</script>";
+                                                    echo "<script>alert('inserted');window.location.href='admin_Trackoreder.php?id=" . $id . "'</script>";
                                                 } else {
                                                     echo "<script>alert('not inserted');</script>";
                                                 }
                                             }
                                             ?>
-
-                                            <table id="datatable" class="table table-striped table-bordered"
-                                                style="width:100%">
-                                                <thead>
-                                                    <tr class="headings">
-                                                        <th class="column-title">Id</th>
-                                                        <th class="column-title">Status</th>
-                                                        <th class="column-title">Order Date & Time</th>
-
-                                                        </th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-
-                                                    <?php
-                                                    $c = 1;
-                                                    $billid = $_GET['id'];
-                                                    $querybill = "select * from ordertrack where billid = '$billid'";
-                                                    $querybill = mysqli_query($con, $querybill);
-                                                    while ($queryrowbill = mysqli_fetch_assoc($querybill)) {
-                                                        ?>
-
-                                                        <tr>
-                                                            <td>
-                                                                <?php echo $c; ?>
-                                                            </td>
-                                                            <td>
-                                                                <?php echo $queryrowbill['status']; ?>
-                                                            </td>
-                                                            <td>
-                                                                <?php echo $queryrowbill['orderdatetime']; ?>
-                                                            </td>
-
-                                                        </tr>
-                                                        <?php
-                                                        $c++;
-                                                    }
-                                                    ?>
-                                                </tbody>
-                                            </table>
-
-
                                         </div>
                                     </div>
                                 </div>
