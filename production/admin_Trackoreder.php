@@ -5,9 +5,6 @@ if (empty($_SESSION["aemailid"])) {
 }
 include('../production/serverfile.php');
 $email = $_SESSION["aemailid"];
-$querytop = "select * from usersdata where emailid = '$email'";
-$restop = mysqli_query($con, $querytop);
-$rowtop = mysqli_fetch_assoc($restop);
 ?>
 
 <!DOCTYPE html>
@@ -171,8 +168,6 @@ $rowtop = mysqli_fetch_assoc($restop);
                                                                         <a href="trackop.php?id=<?php echo $rowtrack['billid']; ?>"
                                                                             class="btn btn-primary btn-sm active "
                                                                             role="button" aria-pressed="true">Edit</a>
-
-
                                                                     </td>
                                                                 </tr>
                                                                 <?php

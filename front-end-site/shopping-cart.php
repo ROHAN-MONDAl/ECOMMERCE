@@ -54,9 +54,7 @@ any other head content must come *after* these tags -->
             <div class="container">
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
                     <a class="navbar-brand" href="#"><img src="img/logo.png" alt=""></a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse"
-                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
 
                     </button>
@@ -64,8 +62,7 @@ any other head content must come *after* these tags -->
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item dropdown submenu">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Home <i class="fa fa-angle-down" aria-hidden="true"></i>
                                 </a>
                                 <ul class="dropdown-menu">
@@ -75,13 +72,11 @@ any other head content must come *after* these tags -->
                             </li>
 
                             <li class="nav-item dropdown submenu">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Shop <i class="fa fa-angle-down" aria-hidden="true"></i>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li class="nav-item"><a class="nav-link"
-                                            href="categories-grid-left-sidebar.php">Product Grid</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="categories-grid-left-sidebar.php">Product Grid</a></li>
                                     <li class="nav-item"><a class="nav-link" href="shopping-cart.php">Shopping Cart</a>
                                     </li>
                                     <li class="nav-item"><a class="nav-link" href="empty-cart.html">Empty Cart</a></li>
@@ -92,11 +87,11 @@ any other head content must come *after* these tags -->
                             $queryselect = "select * from euserdata where euseremail='$euseremail'";
                             $res = mysqli_query($con, $queryselect);
                             while ($row = mysqli_fetch_assoc($res)) {
-                                ?>
+                            ?>
                                 <li class="nav-item"><a class="nav-link" href="contact.html">
                                         <?php echo $row['eusername']; ?>
                                     </a></li>
-                                <?php
+                            <?php
                             }
                             ?>
                         </ul>
@@ -106,16 +101,14 @@ any other head content must come *after* these tags -->
                                 <?php
                                 if (empty($_SESSION['uemailid'])) {
 
-                                    ?>
-                                    <button type="button" class="btn btn-primary"><a href="../user_login/signin.php"
-                                            style="color:white;">Log in</a></button>&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <?php
+                                ?>
+                                    <button type="button" class="btn btn-primary"><a href="../user_login/signin.php" style="color:white;">Log in</a></button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <?php
                                 } else {
-                                    ?>
-                                    <li class="user_icon"><a href="../user_login/index.php"><i
-                                                class="icon-user icons"></i></a></li>
+                                ?>
+                                    <li class="user_icon"><a href="../user_login/index.php"><i class="icon-user icons"></i></a></li>
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <?php
+                                <?php
                                 }
                                 ?>
                             </div>
@@ -203,14 +196,12 @@ any other head content must come *after* these tags -->
                                     $rowcolor = mysqli_fetch_assoc($rescolor);
 
                                     $tot = $tot + (int) $rowcart['quantity'] * (int) $rows['productprice'];
-                                    ?>
+                                ?>
 
                                     <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
                                         <!-- Image -->
-                                        <div class="bg-image hover-overlay hover-zoom ripple rounded"
-                                            data-mdb-ripple-color="light">
-                                            <img src="../production/dataimage/<?php echo $rowimage['image']; ?>"
-                                                class="w-100" />
+                                        <div class="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
+                                            <img src="../production/dataimage/<?php echo $rowimage['image']; ?>" class="w-100" />
                                             <a href="#!">
                                                 <div class="mask" style="background-color: rgba(251, 251, 251, 0.2)"></div>
                                             </a>
@@ -228,30 +219,28 @@ any other head content must come *after* these tags -->
 
                                             <?php
                                             if ($rowcart['capacity'] == 'NA') {
-                                                ?>
+                                            ?>
                                                 <p>Color:
                                                     <?php echo $rowcolor['color']; ?></strong>
                                                 </p>
                                                 <p>Size:
                                                     <?php echo $rowcart['productsize']; ?>
                                                 </p>
-                                                <?php
+                                            <?php
                                             } else {
-                                                ?>
+                                            ?>
                                                 <p>TON:
                                                     <?php echo $rowcart['capacity']; ?>
                                                 </p>
 
-                                                <?php
+                                            <?php
                                             }
                                             ?>
 
-                                            <button type="button" class="btn btn-primary btn-sm me-1 mb-2"
-                                                data-mdb-toggle="tooltip" title="Remove item">
+                                            <button type="button" class="btn btn-primary btn-sm me-1 mb-2" data-mdb-toggle="tooltip" title="Remove item">
                                                 <i class="fa fa-trash"></i>
                                             </button>
-                                            <button type="button" class="btn btn-danger btn-sm mb-2"
-                                                data-mdb-toggle="tooltip" title="Move to the wish list">
+                                            <button type="button" class="btn btn-danger btn-sm mb-2" data-mdb-toggle="tooltip" title="Move to the wish list">
                                                 <i class="fa fa-heart" style="color:white"></i>
                                             </button>
                                             <!-- Data -->
@@ -267,7 +256,7 @@ any other head content must come *after* these tags -->
                                         <script>
                                             function stepUp<?php echo $c ?>(str) {
                                                 var xhttp = new XMLHttpRequest();
-                                                xhttp.onreadystatechange = function () {
+                                                xhttp.onreadystatechange = function() {
                                                     if (this.readyState == 4 && this.status == 200) {
                                                         document.getElementById("demo<?php echo $c ?>").innerHTML =
                                                             this.responseText;
@@ -281,7 +270,7 @@ any other head content must come *after* these tags -->
                                         <script>
                                             function stepDown<?php echo $c ?>(str) {
                                                 var xhttp = new XMLHttpRequest();
-                                                xhttp.onreadystatechange = function () {
+                                                xhttp.onreadystatechange = function() {
                                                     if (this.readyState == 4 && this.status == 200) {
                                                         document.getElementById("demo<?php echo $c ?>").innerHTML =
                                                             this.responseText;
@@ -293,7 +282,7 @@ any other head content must come *after* these tags -->
 
                                             function calculate<?php echo $c; ?>(str) {
                                                 var xhttp = new XMLHttpRequest();
-                                                xhttp.onreadystatechange = function () {
+                                                xhttp.onreadystatechange = function() {
                                                     if (this.readyState == 4 && this.status == 200) {
                                                         document.getElementById("total").innerHTML =
                                                             this.responseText;
@@ -306,22 +295,18 @@ any other head content must come *after* these tags -->
 
 
                                         <div class="d-flex mb-4" style="max-width: 300px">
-                                            <button class="btn btn-primary h-50"
-                                                onclick="stepDown<?php echo $c ?>(<?php echo $rowcart['slno'] ?>);calculate<?php echo $c ?>(<?php echo $rowcart['slno'] ?>)">
+                                            <button class="btn btn-primary h-50" onclick="stepDown<?php echo $c ?>(<?php echo $rowcart['slno'] ?>);calculate<?php echo $c ?>(<?php echo $rowcart['slno'] ?>)">
                                                 <i class="fa fa-minus"></i>
                                             </button>
                                             &nbsp;&nbsp;
                                             <div class="form-outline">
                                                 <div id="demo<?php echo $c ?>">
-                                                    <input id="form1" min="0" name="quantity"
-                                                        value="<?php echo $rowcart['quantity']; ?>" type="text"
-                                                        class="form-control" />
+                                                    <input id="form1" min="0" name="quantity" value="<?php echo $rowcart['quantity']; ?>" type="text" class="form-control" />
                                                     <label class="form-label" for="form1">Quantity</label>
                                                 </div>
                                             </div>
                                             &nbsp;&nbsp;
-                                            <button class="btn btn-primary h-50"
-                                                onclick="stepUp<?php echo $c ?>(<?php echo $rowcart['slno'] ?>);calculate<?php echo $c ?>(<?php echo $rowcart['slno'] ?>)">
+                                            <button class="btn btn-primary h-50" onclick="stepUp<?php echo $c ?>(<?php echo $rowcart['slno'] ?>);calculate<?php echo $c ?>(<?php echo $rowcart['slno'] ?>)">
                                                 <i class="fa fa-plus"></i>
                                             </button>
                                         </div>
@@ -341,7 +326,7 @@ any other head content must come *after* these tags -->
 
 
                                     </div>
-                                    <?php
+                                <?php
                                     $c++;
                                 }
                                 ?>
@@ -366,8 +351,7 @@ any other head content must come *after* these tags -->
                         <div class="card-body">
                             <div id="total">
                                 <ul class="list-group list-group-flush">
-                                    <li
-                                        class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
                                         Products
                                         <span>
                                             <?php echo $tot ?>
@@ -378,8 +362,7 @@ any other head content must come *after* these tags -->
                                         Shipping
                                         <span>Gratis</span>
                                     </li>
-                                    <li
-                                        class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
                                         <div>
                                             <strong>Total amount</strong>
                                             <strong>
@@ -424,7 +407,7 @@ any other head content must come *after* these tags -->
 
                                 while ($rowcart = mysqli_fetch_assoc($resultcart)) {
 
-                                    
+
                                     $status = 'Order Placed';
                                     $orderdatetime = $date;
                                     $orderdate = $date;
@@ -444,7 +427,6 @@ any other head content must come *after* these tags -->
                                         $querydel = "delete from cart where customerid='$euseremail'";
                                         $resdel = mysqli_query($con, $querydel);
                                         mysqli_query($con, $querydel);
-
                                     } else {
                                         echo "<script>alert('Not Inserted & Not Deleted'); window.location.href = '../front-end-site/shopping-cart.php';</script>";
                                     }
@@ -545,8 +527,7 @@ any other head content must come *after* these tags -->
                     Copyright &copy;
                     <script>
                         document.write(new Date().getFullYear());
-                    </script> All rights reserved | This template is made with <i class='fa fa-heart-o'
-                        aria-hidden='true'></i> by <a href='https://colorlib.com' target='_blank'>Colorlib</a>
+                    </script> All rights reserved | This template is made with <i class='fa fa-heart-o' aria-hidden='true'></i> by <a href='https://colorlib.com' target='_blank'>Colorlib</a>
                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                 </h5>
             </div>

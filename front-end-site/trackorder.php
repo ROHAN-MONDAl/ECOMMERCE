@@ -1,14 +1,12 @@
 <?php session_start();
 include('../production/serverfile.php');
 $euseremail = $_SESSION["uemailid"];
-$querytop = "select * from euserdata where euseremail='$euseremail'";
-$restop = mysqli_query($con, $querytop);
-$rowtop = mysqli_fetch_assoc($restop);
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -45,105 +43,159 @@ $rowtop = mysqli_fetch_assoc($restop);
         <![endif]-->
 
     <style>
-        .card-stepper {
-            z-index: 0
+        @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
+        body {
+            background-color: #eeeeee;
+            font-family: 'Open Sans', serif
         }
 
-        #progressbar-2 {
-            color: #455A64;
+        .container {
+            margin-top: 50px;
+            margin-bottom: 50px
         }
 
-        #progressbar-2 li {
-            list-style-type: none;
-            font-size: 13px;
-            width: 33.33%;
-            float: left;
+        .card {
             position: relative;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            min-width: 0;
+            word-wrap: break-word;
+            background-color: #fff;
+            background-clip: border-box;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 0.10rem
         }
 
-        #progressbar-2 #step1:before {
-            content: '\f058';
-            font-family: "Font Awesome 5 Free";
-            color: #fff;
-            width: 37px;
-            margin-left: 0px;
-            padding-left: 0px;
+        .card-header:first-child {
+            border-radius: calc(0.37rem - 1px) calc(0.37rem - 1px) 0 0
         }
 
-        #progressbar-2 #step2:before {
-            content: '\f058';
-            font-family: "Font Awesome 5 Free";
-            color: #fff;
-            width: 37px;
+        .card-header {
+            padding: 0.75rem 1.25rem;
+            margin-bottom: 0;
+            background-color: #fff;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1)
         }
 
-        #progressbar-2 #step3:before {
-            content: '\f058';
-            font-family: "Font Awesome 5 Free";
-            color: #fff;
-            width: 37px;
-            margin-right: 0;
+        .track {
+            position: relative;
+            background-color: #ddd;
+            height: 7px;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            margin-bottom: 60px;
+            margin-top: 50px
+        }
+
+        .track .step {
+            -webkit-box-flex: 1;
+            -ms-flex-positive: 1;
+            flex-grow: 1;
+            width: 25%;
+            margin-top: -18px;
             text-align: center;
+            position: relative
         }
 
-        #progressbar-2 #step4:before {
-            content: '\f111';
-            font-family: "Font Awesome 5 Free";
-            color: #fff;
-            width: 37px;
-            margin-right: 0;
-            text-align: center;
+        .track .step.active:before {
+            background: #FF5722
         }
 
-        #progressbar-2 li:before {
-            line-height: 37px;
-            display: block;
-            font-size: 12px;
-            background: #c5cae9;
-            border-radius: 50%;
-        }
-
-        #progressbar-2 li:after {
-            content: '';
-            width: 100%;
-            height: 10px;
-            background: #c5cae9;
+        .track .step::before {
+            height: 7px;
             position: absolute;
-            left: 0%;
-            right: 0%;
-            top: 15px;
-            z-index: -1;
+            content: "";
+            width: 100%;
+            left: 0;
+            top: 18px
         }
 
-        #progressbar-2 li:nth-child(1):after {
-            left: 1%;
+        .track .step.active .icon {
+            background: #ee5435;
+            color: #fff
+        }
+
+        .track .icon {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            position: relative;
+            border-radius: 100%;
+            background: #ddd
+        }
+
+        .track .step.active .text {
+            font-weight: 400;
+            color: #000
+        }
+
+        .track .text {
+            display: block;
+            margin-top: 7px
+        }
+
+        .itemside {
+            position: relative;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
             width: 100%
         }
 
-        #progressbar-2 li:nth-child(2):after {
-            left: 1%;
-            width: 100%;
+        .itemside .aside {
+            position: relative;
+            -ms-flex-negative: 0;
+            flex-shrink: 0
         }
 
-        #progressbar-2 li:nth-child(3):after {
-            left: 1%;
-            width: 100%;
-            background: #c5cae9 !important;
+        .img-sm {
+            width: 80px;
+            height: 80px;
+            padding: 7px
         }
 
-        #progressbar-2 li:nth-child(4) {
-            left: 0;
-            width: 37px;
+        ul.row,
+        ul.row-sm {
+            list-style: none;
+            padding: 0
         }
 
-        #progressbar-2 li:nth-child(4):after {
-            left: 0;
-            width: 0;
+        .itemside .info {
+            padding-left: 15px;
+            padding-right: 7px
         }
 
-        #progressbar-2 li.active:before,
-        #progressbar-2 li.active:after {
-            background: #6520ff;
+        .itemside .title {
+            display: block;
+            margin-bottom: 5px;
+            color: #212529
+        }
+
+        p {
+            margin-top: 0;
+            margin-bottom: 1rem
+        }
+
+        .btn-warning {
+            color: #ffffff;
+            background-color: #ee5435;
+            border-color: #ee5435;
+            border-radius: 1px
+        }
+
+        .btn-warning:hover {
+            color: #ffffff;
+            background-color: #ff2b00;
+            border-color: #ff2b00;
+            border-radius: 1px
         }
     </style>
 
@@ -157,9 +209,7 @@ $rowtop = mysqli_fetch_assoc($restop);
             <div class="container">
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
                     <a class="navbar-brand" href="#"><img src="img/logo.png" alt=""></a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse"
-                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
 
                     </button>
@@ -167,8 +217,7 @@ $rowtop = mysqli_fetch_assoc($restop);
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item dropdown submenu">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Home <i class="fa fa-angle-down" aria-hidden="true"></i>
                                 </a>
 
@@ -182,13 +231,11 @@ $rowtop = mysqli_fetch_assoc($restop);
                             </li>
 
                             <li class="nav-item dropdown submenu">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Shop <i class="fa fa-angle-down" aria-hidden="true"></i>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li class="nav-item"><a class="nav-link"
-                                            href="categories-grid-left-sidebar.php">Product Grid</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="categories-grid-left-sidebar.php">Product Grid</a></li>
                                     <li class="nav-item"><a class="nav-link" href="shopping-cart.php">Shopping Cart</a>
                                     </li>
                                     <li class="nav-item"><a class="nav-link" href="empty-cart.html">Empty Cart</a></li>
@@ -199,11 +246,11 @@ $rowtop = mysqli_fetch_assoc($restop);
                             $queryselect = "select * from euserdata where euseremail='$euseremail'";
                             $res = mysqli_query($con, $queryselect);
                             while ($row = mysqli_fetch_assoc($res)) {
-                                ?>
+                            ?>
                                 <li class="nav-item"><a class="nav-link" href="contact.html">
                                         <?php echo $row['eusername']; ?>
                                     </a></li>
-                                <?php
+                            <?php
                             }
                             ?>
                         </ul>
@@ -213,17 +260,15 @@ $rowtop = mysqli_fetch_assoc($restop);
                             <?php
                             if (empty($_SESSION['uemailid'])) {
 
-                                ?>
-                                <button type="button" class="btn btn-primary"><a href="../user_login/signin.php"
-                                        style="color:white;">Log in</a></button>&nbsp;&nbsp;&nbsp;&nbsp;
-                                <?php
+                            ?>
+                                <button type="button" class="btn btn-primary"><a href="../user_login/signin.php" style="color:white;">Log in</a></button>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <?php
                             } else {
-                                ?>
+                            ?>
                                 <li class="user_icon"><a href="../user_login/index.php"><i class="icon-user icons"></i></a>
                                 </li>
-                                <li class="cart_cart"><a href="../front-end-site/shopping-cart.php"><i
-                                            class="icon-handbag icons"></i></a></li>
-                                <?php
+                                <li class="cart_cart"><a href="../front-end-site/shopping-cart.php"><i class="icon-handbag icons"></i></a></li>
+                            <?php
                             }
                             ?>
                         </ul>
@@ -238,152 +283,126 @@ $rowtop = mysqli_fetch_assoc($restop);
 
     <!--================ Body =================-->
 
-
-    <section class="vh-100" style="background-color: #8c9eff;">
-        <div class="container py-5 h-100">
-            <div class="row d-flex justify-content-center align-items-center h-100">
-                <div class="col-12">
-                    <div class="card card-stepper text-black" style="border-radius: 16px;">
-
-                        <div class="card-body p-5">
-
-                            <div class="d-flex justify-content-between align-items-center mb-5">
-                                <div>
-                                    <h5 class="mb-0">INVOICE <span class="text-primary font-weight-bold">#Y34XDHR</span>
-                                    </h5>
-                                </div>
-                                <div class="text-end">
-                                    <p class="mb-0">Expected Arrival <span>01/12/19</span></p>
-                                    <p class="mb-0">USPS <span class="font-weight-bold">234094567242423422898</span></p>
-                                </div>
-                            </div>
-
-                            <?php
-                            $id = $_GET['id'];
-                            $i = 0;
-                            $queryt = "select * from ordertrack where billid = '$id'";
-                            $queryres = mysqli_query($con, $queryt);
-                            while ($rowt = mysqli_fetch_assoc($queryres)) {
-                                $a[$i] = $rowt['status'];
-                                $d[$i] = $rowt['orderdatetime'];
-                                $i++;
-                            }
-                            ?>
-
-
-                            <!-- <ul id="progressbar-2" class="d-flex justify-content-between mx-0 mt-0 mb-5 px-0 pt-0 pb-2">
-                                <?php
-                                if ($a[1] == "Order Placed") {
-                                    ?>
-                                    <li class="step0 active text-center" id="step1"></li>
-                                    <?php
-                                } else {
-                                    ?>
-                                    <li class="step0 text-center" id="step1"></li>
-                                    <?php
-                                }
-                                ?>
-
-                                <?php
-                                if ($a[2] == "Order Shipped") {
-                                    ?>
-                                    <li class="step0 active text-center" id="step2"></li>
-                                    <?php
-                                } else {
-                                    ?>
-                                    <li class="step0 text-center" id="step2"></li>
-                                    <?php
-                                }
-                                ?>
-                                
-                                
-                                <?php
-                                if ($a[3] == "Order Despatched") {
-                                    ?>
-                                    <li class="step0 active text-center" id="step3"></li>
-                                <?php
-                                } else {
-                                    ?>
-                                    <li class="step0 text-center" id="step3"></li>
-                                <?php
-                                }
-                                ?>
-
-                                <?php
-                                if ($a[4] == "Order Delivered") {
-                                    ?>
-                                    <li class="step0 active text-center" id="step4"></li>
-                                <?php
-                                } else {
-                                    ?>
-                                    <li class="step0 text-center" id="step4"></li>
-                                <?php
-                                }
-                                ?>
-
-                            </ul> -->
-
-                            <div class="d-flex justify-content-between">
-
-
-                                <div class="d-lg-flex align-items-center">
-                                    <i class="fa-3x me-lg-4 mb-3 mb-lg-0"></i>
-                                    <div>
-                                        <p class="fw-bold mb-1">
-                                            <?php echo "Order Placed" ?>
-                                            <?php echo $d[1] ?>
-                                        </p>
-                                    </div>
-                                </div>
-
-
-                                <div class="d-lg-flex align-items-center">
-                                    <i class="fa-3x me-lg-4 mb-3 mb-lg-0"></i>
-                                    <div>
-                                        <p class="fw-bold mb-1">
-                                            <?php echo "Order Shipped" ?>
-                                            <?php echo $d[2] ?>
-                                        </p>
-
-                                    </div>
-                                </div>
-
-
-                                <div class="d-lg-flex align-items-center">
-                                    <i class="fa-3x me-lg-4 mb-3 mb-lg-0"></i>
-                                    <div>
-                                        <p class="fw-bold mb-1">
-                                            <?php echo "Order Despatched" ?>
-                                            <?php echo $d[3] ?>
-                                        </p>
-
-                                    </div>
-                                </div>
-
-
-                                <div class="d-lg-flex align-items-center">
-                                    <i class=" fa-3x me-lg-4 mb-3 mb-lg-0"></i>
-                                    <div>
-                                        <p class="fw-bold mb-1">
-                                            <?php echo "Order Delivered" ?>
-                                            <?php echo $d[4] ?>
-                                        </p>
-                                    </div>
-                                </div>
-
-
-                            </div>
-
-
-
-
-
-                        </div>
+    <div class="container">
+        <article class="card">
+            <header class="card-header"> My Orders / Tracking </header>
+            <div class="card-body">
+                <h6>Order ID: OD45345345435</h6>
+                <article class="card">
+                    <div class="card-body row">
+                        <div class="col"> <strong>Estimated Delivery time:</strong> <br>29 nov 2019 </div>
+                        <div class="col"> <strong>Shipping BY:</strong> <br> BLUEDART, | <i class="fa fa-phone"></i> +1598675986 </div>
+                        <div class="col"> <strong>Status:</strong> <br> Picked by the courier </div>
+                        <div class="col"> <strong>Tracking #:</strong> <br> BD045903594059 </div>
                     </div>
+                </article>
+
+
+
+                <?php
+                $id = $_GET['id'];
+                $i = 0;
+                $queryt = "select * from ordertrack where billid = '$id'";
+                $queryres = mysqli_query($con, $queryt);
+                while ($rowt = mysqli_fetch_assoc($queryres)) {
+                    $a[$i] = $rowt['status'];
+                    $d[$i] = $rowt['orderdatetime'];
+                    $i++;
+                }
+                ?>
+                <div class="track">
+
+                <?php
+                    if (!empty($a[1])) {
+                    ?>
+                        <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Order confirmed</span> </div>
+                    <?php
+                    } else {
+                    ?>
+                        <div class="step"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Order confirmed</span> </div>
+                    <?php
+                    }
+                    ?>
+
+
+
+
+                    <?php
+                    if (!empty($a[2])) {
+                    ?>
+                        <div class="step active"> <span class="icon"> <i class="fa fa-user"></i> </span> <span class="text"> Picked by courier </span> </div>
+                    <?php
+                    } else {
+                    ?>
+                        <div class="step"> <span class="icon"> <i class="fa fa-user"></i> </span> <span class="text"> Picked by courier</span> </div>
+                    <?php
+                    }
+                    ?>
+
+
+
+
+
+
+                    <?php
+                    if (!empty($a[3])) {
+                    ?>
+                        <div class="step active"> <span class="icon"> <i class="fa fa-truck"></i> </span> <span class="text"> On the way </span> </div>
+                    <?php
+                    } else {
+                    ?>
+                        <div class="step"> <span class="icon"> <i class="fa fa-truck"></i> </span> <span class="text"> On the way </span> </div>
+                    <?php
+                    }
+                    ?>
+
+
+                    <?php
+                    if (!empty($a[4])) {
+                    ?>
+                        <div class="step active"> <span class="icon"> <i class="fa fa-cubes"></i> </span> <span class="text">Delivered</span> </div>
+                    <?php
+                    } else {
+                    ?>
+                        <div class="step"> <span class="icon"> <i class="fa fa-cubes"></i> </span> <span class="text"> On the way </span> </div>
+                    <?php
+                    }
+                    ?>
+
                 </div>
+
+                <hr>
+                <ul class="row">
+                    <li class="col-md-4">
+                        <figure class="itemside mb-3">
+                            <div class="aside"><img src="https://i.imgur.com/iDwDQ4o.png" class="img-sm border"></div>
+                            <figcaption class="info align-self-center">
+                                <p class="title">Dell Laptop with 500GB HDD <br> 8GB RAM</p> <span class="text-muted">$950 </span>
+                            </figcaption>
+                        </figure>
+                    </li>
+                    <li class="col-md-4">
+                        <figure class="itemside mb-3">
+                            <div class="aside"><img src="https://i.imgur.com/tVBy5Q0.png" class="img-sm border"></div>
+                            <figcaption class="info align-self-center">
+                                <p class="title">HP Laptop with 500GB HDD <br> 8GB RAM</p> <span class="text-muted">$850 </span>
+                            </figcaption>
+                        </figure>
+                    </li>
+                    <li class="col-md-4">
+                        <figure class="itemside mb-3">
+                            <div class="aside"><img src="https://i.imgur.com/Bd56jKH.png" class="img-sm border"></div>
+                            <figcaption class="info align-self-center">
+                                <p class="title">ACER Laptop with 500GB HDD <br> 8GB RAM</p> <span class="text-muted">$650 </span>
+                            </figcaption>
+                        </figure>
+                    </li>
+                </ul>
+                <hr>
+                <a href="../front-end-site/myorders.php" class="btn btn-warning" data-abc="true"> <i class="fa fa-chevron-left"></i> Back to orders</a>
             </div>
-        </div>
-    </section>
+        </article>
+    </div>
 
     <!--================ Body =================-->
 
@@ -471,8 +490,7 @@ $rowtop = mysqli_fetch_assoc($restop);
                     Copyright &copy;
                     <script>
                         document.write(new Date().getFullYear());
-                    </script> All rights reserved | This template is made with <i class="fa fa-heart-o"
-                        aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                    </script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                 </h5>
             </div>

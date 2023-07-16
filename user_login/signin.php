@@ -69,7 +69,6 @@ include('../production/serverfile.php');
               }
               ?>
 
-
                         <div class="social-login">
                             <span class="social-label">Or login with</span>
                             <ul class="socials">
@@ -78,6 +77,7 @@ include('../production/serverfile.php');
                                 <li><a href="#"><i class="display-flex-center zmdi zmdi-google"></i></a></li>
                             </ul>
                         </div>
+                        
                     </div>
                 </div>
             </div>

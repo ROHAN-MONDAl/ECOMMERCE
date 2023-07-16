@@ -1,9 +1,6 @@
 <?php session_start();
 include('../production/serverfile.php');
 $euseremail = $_SESSION["uemailid"];
-$querytop = "select * from euserdata where euseremail='$euseremail'";
-$restop = mysqli_query($con, $querytop);
-$rowtop = mysqli_fetch_assoc($restop);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,9 +50,7 @@ $rowtop = mysqli_fetch_assoc($restop);
             <div class="container">
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
                     <a class="navbar-brand" href="#"><img src="img/logo.png" alt=""></a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse"
-                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
 
                     </button>
@@ -63,8 +58,7 @@ $rowtop = mysqli_fetch_assoc($restop);
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item dropdown submenu">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Home <i class="fa fa-angle-down" aria-hidden="true"></i>
                                 </a>
                                 <ul class="dropdown-menu">
@@ -76,13 +70,11 @@ $rowtop = mysqli_fetch_assoc($restop);
                             </li>
 
                             <li class="nav-item dropdown submenu">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Shop <i class="fa fa-angle-down" aria-hidden="true"></i>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li class="nav-item"><a class="nav-link"
-                                            href="categories-grid-left-sidebar.php">Product Grid</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="categories-grid-left-sidebar.php">Product Grid</a></li>
                                     <li class="nav-item"><a class="nav-link" href="shopping-cart.php">Shopping Cart</a>
                                     </li>
                                     <li class="nav-item"><a class="nav-link" href="empty-cart.html">Empty Cart</a></li>
@@ -93,11 +85,11 @@ $rowtop = mysqli_fetch_assoc($restop);
                             $queryselect = "select * from euserdata where euseremail='$euseremail'";
                             $res = mysqli_query($con, $queryselect);
                             while ($row = mysqli_fetch_assoc($res)) {
-                                ?>
+                            ?>
                                 <li class="nav-item"><a class="nav-link" href="contact.html">
                                         <?php echo $row['eusername']; ?>
                                     </a></li>
-                                <?php
+                            <?php
                             }
                             ?>
                         </ul>
@@ -107,16 +99,14 @@ $rowtop = mysqli_fetch_assoc($restop);
                                 <?php
                                 if (empty($_SESSION['uemailid'])) {
 
-                                    ?>
-                                    <button type="button" class="btn btn-primary"><a href="../user_login/signin.php"
-                                            style="color:white;">Log in</a></button>&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <?php
+                                ?>
+                                    <button type="button" class="btn btn-primary"><a href="../user_login/signin.php" style="color:white;">Log in</a></button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <?php
                                 } else {
-                                    ?>
-                                    <li class="user_icon"><a href="../user_login/index.php"><i
-                                                class="icon-user icons"></i></a></li>
+                                ?>
+                                    <li class="user_icon"><a href="../user_login/index.php"><i class="icon-user icons"></i></a></li>
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <?php
+                                <?php
                                 }
                                 ?>
                             </div>
@@ -164,8 +154,9 @@ $rowtop = mysqli_fetch_assoc($restop);
                         $queryselects = "select distinct(billid) from corder where customerid='$euseremail'";
                         $selectrack = mysqli_query($con, $queryselects);
                         while ($rowtrack = mysqli_fetch_assoc($selectrack)) {
-                            ?>
-                            <div>
+                        ?>
+                            <hr>
+                            <div class="text-center">
                                 <?php echo $rowtrack['billid']; ?>
                             </div>
                             <hr>
@@ -196,12 +187,11 @@ $rowtop = mysqli_fetch_assoc($restop);
 
 
                                     $tot = $tot + (int) $rowcart['quantity'] * (int) $rows['productprice'];
-                                    ?>
+                                ?>
 
                                     <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
                                         <!-- Image -->
-                                        <div class="bg-image hover-overlay hover-zoom ripple rounded"
-                                            data-mdb-ripple-color="light">
+                                        <div class="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
                                             <img src="../production/dataimage/<?php echo $rowimage['image']; ?>" class="w-50" />
                                             <a href="#!">
                                                 <div class="mask" style="background-color: rgba(251, 251, 251, 0.2)"></div>
@@ -221,21 +211,21 @@ $rowtop = mysqli_fetch_assoc($restop);
 
                                             <?php
                                             if ($rowcart['ton'] == 'NA') {
-                                                ?>
+                                            ?>
                                                 <p>Color:
                                                     <?php echo $rowcolor['color']; ?></strong>
                                                 </p>
                                                 <p>Size:
                                                     <?php echo $rowcart['productsize']; ?>
                                                 </p>
-                                                <?php
+                                            <?php
                                             } else {
-                                                ?>
+                                            ?>
                                                 <p>TON:
                                                     <?php echo $rowcart['ton']; ?>
                                                 </p>
 
-                                                <?php
+                                            <?php
                                             }
                                             ?>
                                             <!-- Data -->
@@ -263,24 +253,59 @@ $rowtop = mysqli_fetch_assoc($restop);
                                         echo $print;
                                         ?>
                                     </strong>
-                                    <?php
+                                <?php
                                     $c++;
-
                                 }
                                 ?>
 
                             </div>
-                            <div class="text-right"><strong>Total Rs =
-                                    <?php echo $tot ?>
-                                </strong> &nbsp&nbsp&nbsp&nbsp&nbsp <a class="add_cart_btn bg-primary text-white w-25"
-                                    href="../front-end-site/trackorder.php?id=<?php echo $rowtrack['billid']; ?>">Track Your Order</a> &nbsp&nbsp&nbsp</div>
-                            <br>
-                            <br>
+
+
                             <?php
+                            $i = 0;
+                            $queryt = "select * from ordertrack where billid = '$tid'";
+                            $queryres = mysqli_query($con, $queryt);
+                            while ($rowt = mysqli_fetch_assoc($queryres)) {
+                                $a[$i] = $rowt['status'];
+                                $d[$i] = $rowt['orderdatetime'];
+                                $i++;
+                            }
+                            ?>
+
+                            <?php
+                            if (strtotime($d[1]) < strtotime('- 7 days')) {
+                            ?>
+                                <?php
+                                if (!empty($a[2])) {
+                                ?>
+                                    <div class="text-right"><strong>Total Rs = <?php echo $tot ?>
+                                        </strong> &nbsp&nbsp&nbsp&nbsp&nbsp
+                                        <a class="add_cart_btn bg-primary text-white w-25" href="../front-end-site/trackorder.php?id=<?php echo $rowtrack['billid']; ?>">Return My Order</a> &nbsp&nbsp&nbsp
+                                        <a class="add_cart_btn bg-primary text-white w-25" href="../front-end-site/trackorder.php?id=<?php echo $rowtrack['billid']; ?>">Track Your Order</a> &nbsp&nbsp&nbsp
+                                    </div>
+                                <?php
+                                } else {
+                                ?>
+                                    <div class="text-right"><strong>Total Rs = <?php echo $tot ?>
+                                        </strong>&nbsp&nbsp&nbsp&nbsp&nbsp
+                                        <a class="add_cart_btn bg-primary text-white w-25" href="../front-end-site/trackorder.php?id=<?php echo $rowtrack['billid']; ?>">Cancel Your Order</a> &nbsp&nbsp&nbsp
+                                        <a class="add_cart_btn bg-primary text-white w-25" href="../front-end-site/trackorder.php?id=<?php echo $rowtrack['billid']; ?>">Track Your Order</a> &nbsp&nbsp&nbsp
+                                    </div>
+                                <?php
+                                }
+                                ?>
+                            <?php
+                            } else {
+                            ?>
+                                <div class="text-center"> Thank You For Shopping </div>
+                            <?php
+                            }
+                            ?>
+                            <br>
+                            <!-- Single item -->
+                        <?php
                         }
                         ?>
-                        <!-- Single item -->
-
                     </div>
                     <br>
                     <br>
@@ -376,8 +401,7 @@ $rowtop = mysqli_fetch_assoc($restop);
                     Copyright &copy;
                     <script>
                         document.write(new Date().getFullYear());
-                    </script> All rights reserved | This template is made with <i class="fa fa-heart-o"
-                        aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                    </script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                 </h5>
             </div>
