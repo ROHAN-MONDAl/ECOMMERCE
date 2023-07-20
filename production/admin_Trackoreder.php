@@ -148,7 +148,7 @@ $email = $_SESSION["aemailid"];
                                                             $billid = $_GET['id'];
                                                             $querytrack = "select * from ordertrack where billid = '$billid'";
                                                             $querytrack = mysqli_query($con, $querytrack);
-                                                            while ($rowtrack = mysqli_fetch_assoc($querytrack)) {
+                                                            while($rowtrack = mysqli_fetch_assoc($querytrack)){
                                                                 ?>
 
                                                                 <tr>
@@ -173,6 +173,7 @@ $email = $_SESSION["aemailid"];
                                                                 <?php
                                                                 $c++;
                                                             }
+                                                            
                                                             ?>
                                                         </tbody>
                                                     </table>

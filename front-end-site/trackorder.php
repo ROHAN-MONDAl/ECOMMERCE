@@ -297,8 +297,6 @@ $euseremail = $_SESSION["uemailid"];
                     </div>
                 </article>
 
-
-
                 <?php
                 $id = $_GET['id'];
                 $i = 0;
@@ -306,59 +304,49 @@ $euseremail = $_SESSION["uemailid"];
                 $queryres = mysqli_query($con, $queryt);
                 while ($rowt = mysqli_fetch_assoc($queryres)) {
                     $a[$i] = $rowt['status'];
-                    $d[$i] = $rowt['orderdatetime'];
                     $i++;
                 }
                 ?>
                 <div class="track">
 
                 <?php
-                    if (!empty($a[1])) {
+                    if (!empty($a[0])) {
                     ?>
                         <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Order confirmed</span> </div>
                     <?php
                     } else {
                     ?>
-                        <div class="step"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Order confirmed</span> </div>
+                        <div class="step"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Order Placed</span> </div>
                     <?php
                     }
                     ?>
 
-
-
-
                     <?php
-                    if (!empty($a[2])) {
+                    if (!empty($a[1])) {
                     ?>
                         <div class="step active"> <span class="icon"> <i class="fa fa-user"></i> </span> <span class="text"> Picked by courier </span> </div>
                     <?php
                     } else {
                     ?>
-                        <div class="step"> <span class="icon"> <i class="fa fa-user"></i> </span> <span class="text"> Picked by courier</span> </div>
+                        <div class="step"> <span class="icon"> <i class="fa fa-user"></i> </span> <span class="text">Order Shipped</span> </div>
                     <?php
                     }
                     ?>
 
-
-
-
-
-
                     <?php
-                    if (!empty($a[3])) {
+                    if (!empty($a[2])) {
                     ?>
                         <div class="step active"> <span class="icon"> <i class="fa fa-truck"></i> </span> <span class="text"> On the way </span> </div>
                     <?php
                     } else {
                     ?>
-                        <div class="step"> <span class="icon"> <i class="fa fa-truck"></i> </span> <span class="text"> On the way </span> </div>
+                        <div class="step"> <span class="icon"> <i class="fa fa-truck"></i> </span> <span class="text"> Order Dispatched </span> </div>
                     <?php
                     }
                     ?>
 
-
                     <?php
-                    if (!empty($a[4])) {
+                    if (!empty($a[3])) {
                     ?>
                         <div class="step active"> <span class="icon"> <i class="fa fa-cubes"></i> </span> <span class="text">Delivered</span> </div>
                     <?php

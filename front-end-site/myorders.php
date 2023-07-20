@@ -261,22 +261,29 @@ $euseremail = $_SESSION["uemailid"];
                             </div>
 
 
-                            <?php
-                            $i = 0;
-                            $queryt = "select * from ordertrack where billid = '$tid'";
-                            $queryres = mysqli_query($con, $queryt);
-                            while ($rowt = mysqli_fetch_assoc($queryres)) {
-                                $a[$i] = $rowt['status'];
-                                $d[$i] = $rowt['orderdatetime'];
-                                $i++;
-                            }
-                            ?>
+
 
                             <?php
-                            if (strtotime($d[1]) < strtotime('- 7 days')) {
+                            $querydt = "select * from ordertrack where billid = '$tid'";
+                            $queryresdt = mysqli_query($con, $querydt);
+                            $rowfdt = mysqli_fetch_assoc($queryresdt);
+                            date_default_timezone_set("Asia/Kolkata");
+                            $daysLeft = 0;
+                            $fromDate = $rowfdt['orderdatetime'];
+                            $curDate = date('Y-m-d');
+                            $daysLeft = abs(strtotime($curDate) - strtotime($fromDate));
+                            $days = $daysLeft/(60 * 60 * 24);
+                            
+                            printf("Days difference %d",$days);
+                            if ($days <= 7) {
                             ?>
+
+
                                 <?php
-                                if (!empty($a[2])) {
+                                $queryf = "select * from ordertrack where billid = '$tid'";
+                                $queryresf = mysqli_query($con, $queryf);
+                                $rowf = mysqli_num_rows($queryresf);
+                                if ($rowf >= 2) {
                                 ?>
                                     <div class="text-right"><strong>Total Rs = <?php echo $tot ?>
                                         </strong> &nbsp&nbsp&nbsp&nbsp&nbsp

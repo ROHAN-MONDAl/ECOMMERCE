@@ -422,15 +422,16 @@ any other head content must come *after* these tags -->
                                     $rowcart = "INSERT INTO corder VALUES ('', '$billid', '$orderdate', '$customerid', '$productid', '$colorid', '$quantity', '$productsize', '$ton')";
 
                                     if (mysqli_query($con, $rowcart)) {
-                                        $rowcart = "INSERT INTO ordertrack VALUES ('', '$billid', '$status', '$orderdatetime')";
-                                        mysqli_query($con, $rowcart);
                                         $querydel = "delete from cart where customerid='$euseremail'";
                                         $resdel = mysqli_query($con, $querydel);
                                         mysqli_query($con, $querydel);
+                                        echo "<script>alert('Inserted');window.location.href = '../front-end-site/shopping-cart.php';</script>";
                                     } else {
-                                        echo "<script>alert('Not Inserted & Not Deleted'); window.location.href = '../front-end-site/shopping-cart.php';</script>";
+                                        echo "<script>alert('Not Inserted & Not Deleted');window.location.href = '../front-end-site/shopping-cart.php';</script>";
                                     }
                                 }
+                                $rowcart = "INSERT INTO ordertrack VALUES ('', '$billid', '$status', '$orderdatetime')";
+                                mysqli_query($con, $rowcart);
                             }
                             ?>
                         </div>
