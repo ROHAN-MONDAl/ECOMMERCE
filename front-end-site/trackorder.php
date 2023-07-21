@@ -1,6 +1,9 @@
 <?php session_start();
 include('../production/serverfile.php');
 $euseremail = $_SESSION["uemailid"];
+$querytop = "select * from euserdata where euseremail='$euseremail'";
+$restop = mysqli_query($con, $querytop);
+$rowtop = mysqli_fetch_assoc($restop);
 ?>
 <!DOCTYPE html>
 <html lang="en">
