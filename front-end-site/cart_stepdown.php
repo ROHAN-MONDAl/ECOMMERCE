@@ -18,7 +18,7 @@ $rowq1 = mysqli_fetch_assoc($selectq1);
 if ($rowq1['quantity'] == 1) {
     $quantity = $rowq1['quantity'];
 } else {
-    $selectnum = "UPDATE cart SET quantity=quantity-1 WHERE slno='$s'";
+    $selectnum = "UPDATE cart SET quantity = quantity-1 WHERE slno='$s'";
     mysqli_query($con, $selectnum);
 
     $selectq = "select * from cart where slno='$s'";
