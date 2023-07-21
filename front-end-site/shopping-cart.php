@@ -377,8 +377,17 @@ any other head content must come *after* these tags -->
                             </div>
 
                             <form method="post">
-                                <button type="submit" name="Add_Order" class="btn btn-primary btn-lg btn-block">Place
-                                    Order</button>
+                                <?php
+                                if (empty($_SESSION['uemailid'])) {
+                                ?>
+                                    <button type="submit" disabled name="Add_Order" class="btn btn-primary btn-lg btn-block">Place Order</button>
+                                <?php
+                                } else {
+                                ?>
+                                    <button type="submit" name="Add_Order" class="btn btn-primary btn-lg btn-block">Place Order</button>
+                                <?php
+                                }
+                                ?>
                             </form>
                             <?php
                             $n = 10;
