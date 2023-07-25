@@ -348,6 +348,8 @@ any other head content must come *after* these tags -->
                             <h5 class="mb-0">Summary</h5>
                         </div>
                         <div class="card-body">
+
+                        
                             <div id="total">
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">

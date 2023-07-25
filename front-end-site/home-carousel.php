@@ -425,120 +425,55 @@ $rowtop = mysqli_fetch_assoc($restop);
                     <div class="col-lg-9">
                         <div class="fillter_slider_inner">
                             <ul class="portfolio_filter">
-                                <li class="active" data-filter="*"><a href="#">men's</a></li>
-                                <li data-filter=".woman"><a href="#">Woman</a></li>
-                                <li data-filter=".shoes"><a href="#">Shoes</a></li>
-                                <li data-filter=".bags"><a href="#">Bags</a></li>
+                                <li class="active" data-filter="*"><a href="#">All</a></li>
+                                <?php
+                                $queryselect = "select * from categories";
+                                $res = mysqli_query($con, $queryselect);
+                                while ($row = mysqli_fetch_assoc($res)) {
+                                ?>
+                                    <li data-filter=".<?php echo $row['names']; ?>"><a href="#"><?php echo $row['names']; ?></a></li>
+                                <?php
+                                }
+                                ?>
                             </ul>
                             <div class="fillter_slider owl-carousel">
-                                <div class="item shoes">
-                                    <div class="fillter_product_item bags">
-                                        <div class="f_p_img">
-                                            <img src="img/product/fillter-product/f-product-1.jpg" alt="">
-                                            <h5 class="sale">Sale</h5>
-                                        </div>
-                                        <div class="f_p_text">
-                                            <h5>Nike Max Air Vapor Power</h5>
-                                            <h4>$45.05</h4>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item woman shoes bags">
-                                    <div class="fillter_product_item">
-                                        <div class="f_p_img">
-                                            <img src="img/product/fillter-product/f-product-2.jpg" alt="">
-                                            <h5 class="new">New</h5>
-                                        </div>
-                                        <div class="f_p_text">
-                                            <h5>Fossil Watch</h5>
-                                            <h4><del>$250</del> $110</h4>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item woman shoes">
-                                    <div class="fillter_product_item">
-                                        <div class="f_p_img">
-                                            <img src="img/product/fillter-product/f-product-3.jpg" alt="">
-                                            <h5 class="discount">-10%</h5>
-                                        </div>
-                                        <div class="f_p_text">
-                                            <h5>High Heel</h5>
-                                            <h4>$45.05</h4>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item shoes">
-                                    <div class="fillter_product_item bags">
-                                        <div class="f_p_img">
-                                            <img src="img/product/fillter-product/f-product-1.jpg" alt="">
-                                            <h5 class="sale">Sale</h5>
-                                        </div>
-                                        <div class="f_p_text">
-                                            <h5>Nike Max Air Vapor Power</h5>
-                                            <h4>$45.05</h4>
+                                <?php
+                                $queryselects = "select * from product";
+                                $ress = mysqli_query($con, $queryselects);
+                                while ($rows = mysqli_fetch_assoc($ress)) {
+                                    $pid = $rows['id'];
+                                    $querycolor = "select * from addcolor where pid='$pid' limit 1";
+                                    $rescolor = mysqli_query($con, $querycolor);
+                                    $rc = mysqli_num_rows($rescolor);
+                                    if ($rc > 0) {
+                                        $rowcolor = mysqli_fetch_assoc($rescolor);
+                                        $cid = $rowcolor['id'];
+
+                                        $queryimage = "select * from addimage where cid='$cid' limit 1";
+                                        $resimage = mysqli_query($con, $queryimage);
+                                        $rowimage = mysqli_fetch_assoc($resimage);
+                                    }
+                                ?>
+                                    <div class="<?php echo $rows['catname']; ?>">
+                                        <div class="fillter_product_item bags">
+
+                                            <div class="f_p_img">
+                                                <a href="product-details.php?item=<?php echo $pid; ?>&cid=<?php echo $cid; ?>"><img class="img-fluid" src="../production/dataimage/<?php echo $rowimage['image']; ?>" alt=""></a>
+                                                <h5 class="sale">Sale</h5>
+                                            </div>
+
+                                            <div class="f_p_text">
+                                                <ul>
+                                                    <li><a class="add_cart_btn" href="product-details.php?item=<?php echo $pid; ?>&cid=<?php echo $cid; ?>">Show Product</a></li>
+                                                </ul>
+                                                <h4><?php echo $rows['name']; ?></h4>
+                                                <h5><?php echo $rows['productprice']; ?></h5>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="item woman shoes bags">
-                                    <div class="fillter_product_item">
-                                        <div class="f_p_img">
-                                            <img src="img/product/fillter-product/f-product-2.jpg" alt="">
-                                            <h5 class="new">New</h5>
-                                        </div>
-                                        <div class="f_p_text">
-                                            <h5>Fossil Watch</h5>
-                                            <h4><del>$250</del> $110</h4>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item woman shoes">
-                                    <div class="fillter_product_item">
-                                        <div class="f_p_img">
-                                            <img src="img/product/fillter-product/f-product-3.jpg" alt="">
-                                            <h5 class="discount">-10%</h5>
-                                        </div>
-                                        <div class="f_p_text">
-                                            <h5>High Heel</h5>
-                                            <h4>$45.05</h4>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item shoes">
-                                    <div class="fillter_product_item bags">
-                                        <div class="f_p_img">
-                                            <img src="img/product/fillter-product/f-product-1.jpg" alt="">
-                                            <h5 class="sale">Sale</h5>
-                                        </div>
-                                        <div class="f_p_text">
-                                            <h5>Nike Max Air Vapor Power</h5>
-                                            <h4>$45.05</h4>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item woman shoes bags">
-                                    <div class="fillter_product_item">
-                                        <div class="f_p_img">
-                                            <img src="img/product/fillter-product/f-product-2.jpg" alt="">
-                                            <h5 class="new">New</h5>
-                                        </div>
-                                        <div class="f_p_text">
-                                            <h5>Fossil Watch</h5>
-                                            <h4><del>$250</del> $110</h4>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item woman shoes">
-                                    <div class="fillter_product_item">
-                                        <div class="f_p_img">
-                                            <img src="img/product/fillter-product/f-product-3.jpg" alt="">
-                                            <h5 class="discount">-10%</h5>
-                                        </div>
-                                        <div class="f_p_text">
-                                            <h5>High Heel</h5>
-                                            <h4>$45.05</h4>
-                                        </div>
-                                    </div>
-                                </div>
+                                <?php
+                                }
+                                ?>
                             </div>
                         </div>
                     </div>

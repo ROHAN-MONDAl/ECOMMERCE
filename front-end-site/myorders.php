@@ -269,6 +269,7 @@ $rowtop = mysqli_fetch_assoc($restop);
                             $querydt = "select * from ordertrack where billid = '$tid'";
                             $queryresdt = mysqli_query($con, $querydt);
                             $rowfdt = mysqli_fetch_assoc($queryresdt);
+                            
                             date_default_timezone_set("Asia/Kolkata");
                             $daysLeft = 0;
                             $fromDate = $rowfdt['orderdatetime'];
