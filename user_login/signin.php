@@ -21,8 +21,7 @@ include('../production/serverfile.php');
     <div class="main">
 
         <!-- Sign up form -->
-
-dczx
+        
         <!-- Sing in  Form -->
         <section class="sign-in">
             <div class="container">
