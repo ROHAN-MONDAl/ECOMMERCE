@@ -1,9 +1,19 @@
-<?php session_start();
+<?php
+session_start();
 include('../production/serverfile.php');
-$euseremail = $_SESSION["uemailid"];
-$querytop = "select * from euserdata where euseremail='$euseremail'";
-$restop = mysqli_query($con, $querytop);
-$rowtop = mysqli_fetch_assoc($restop);
+
+if (isset($_SESSION['uemailid'])) {
+    $euseremail = $_SESSION['uemailid'];
+    $querytop = "select * from euserdata where euseremail='$euseremail'";
+    $restop = mysqli_query($con, $querytop);
+    $rowtop = mysqli_fetch_assoc($restop);
+}
+
+include('../user_login/google_signin.php');
+$email = $_SESSION["email"];
+$gquerytop = "select * from google_account where email='$email'";
+$grestop = mysqli_query($con, $gquerytop);
+$growtop = mysqli_fetch_assoc($grestop);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -119,23 +129,37 @@ $rowtop = mysqli_fetch_assoc($restop);
                             <?php
                             }
                             ?>
+                            <?php
+                            $gqueryselect = "select * from google_account where email='$email'";
+                            $gres = mysqli_query($con, $gqueryselect);
+                            while ($grow = mysqli_fetch_assoc($gres)) {
+                            ?>
+                                <li class="nav-item"><a class="nav-link" href="contact.html"><?php echo $grow['email']; ?></a></li>
+                            <?php
+                            }
+                            ?>
+
                         </ul>
                         <ul class="navbar-nav justify-content-end">
 
                             <div>
-                                <?php
-                                if (empty($_SESSION['uemailid'])) {
+                                <?php if (empty($_SESSION['email'])) { ?>
+                                    <?php
+                                    if (empty($_SESSION['uemailid'])) {
 
-                                ?>
-                                    <button type="button" class="btn btn-primary"><a href="../user_login/signin.php" style="color:white;">Log in</a></button>&nbsp;&nbsp;&nbsp;&nbsp;
-                                <?php
-                                } else {
-                                ?>
-                                    <li class="user_icon"><a href="../user_login/index.php"><i class="icon-user icons"></i></a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    ?>
+                                        <button type="button" class="btn btn-primary"><a href="../user_login/signin.php" style="color:white;">Log in</a></button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <?php
+                                    } else {
+                                    ?>
+                                        <li class="user_icon"><a href="../user_login/index.php"><i class="icon-user icons"></i></a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-                                <?php
-                                }
-                                ?>
+                                    <?php
+                                    }
+                                    ?>
+                                <?php  } else { ?>
+                                    <li><a href="../user_login/googlelogout.php">Log Out</a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <?php   } ?>
 
                             </div>
 
@@ -454,6 +478,8 @@ $rowtop = mysqli_fetch_assoc($restop);
                                         $rowimage = mysqli_fetch_assoc($resimage);
                                     }
                                 ?>
+
+
                                     <div class="<?php echo $rows['catname']; ?>">
                                         <div class="fillter_product_item bags">
 
@@ -471,6 +497,8 @@ $rowtop = mysqli_fetch_assoc($restop);
                                             </div>
                                         </div>
                                     </div>
+
+
                                 <?php
                                 }
                                 ?>

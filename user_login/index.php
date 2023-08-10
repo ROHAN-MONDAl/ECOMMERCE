@@ -42,11 +42,11 @@ $euseremail = $_SESSION["uemailid"];
                             <form method="POST" class="register-form" id="login-form">
                                 <div class="form-group">
                                     <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                    <input type="text" name="euseremail" id="your_name" placeholder="<?php echo $row['euseremail']; ?>" disabled/>
+                                    <input type="text" name="euseremail" id="your_name" placeholder="<?php echo $row['euseremail']; ?>" disabled />
                                 </div>
                                 <div class="form-group">
                                     <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
-                                    <input type="password" name="euserpassword" id="your_pass" placeholder="<?php echo $row['euserpassword']; ?>" disabled/>
+                                    <input type="password" name="euserpassword" id="your_pass" placeholder="<?php echo $row['euserpassword']; ?>" disabled />
                                 </div>
                                 <div class="form-group form-button">
                                     <a href="../user_login/signin.php" style="text-decoration: none" type="submit" name="signout" id="signin" class="form-submit">Log Out</a>

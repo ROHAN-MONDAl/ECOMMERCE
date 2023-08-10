@@ -54,7 +54,6 @@ $cid = $_GET['cid'];
 </head>
 
 <body>
-
     <!--================Menu Area =================-->
     <header class="shop_header_area carousel_menu_area">
         <div class="carousel_menu_inner">
@@ -119,15 +118,7 @@ $cid = $_GET['cid'];
                                 }
                                 ?>
                             </div>
-
-                          
-                                    <li class="cart_cart"><a href="../front-end-site/shopping-cart.php"><i class="icon-handbag icons"></i></a></li>
-                                
-
-
-
-
-
+                            <li class="cart_cart"><a href="../front-end-site/shopping-cart.php"><i class="icon-handbag icons"></i></a></li>
                         </ul>
                     </div>
                 </nav>

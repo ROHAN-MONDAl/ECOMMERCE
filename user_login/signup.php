@@ -1,4 +1,4 @@
-<?php session_start();
+<?php 
 $_SESSION['uemailid'] = "";
 include('../production/serverfile.php');
 ?>
